@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.songhaozhi.mayday.mapper.generator.BacklogMapper">
+    <resultMap id="BaseResultMap" type="com.songhaozhi.mayday.model.domain.Backlog">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="backlog_id" jdbcType="INTEGER" property="backlogId" />
+        <result column="backlog_name" jdbcType="VARCHAR" property="backlogName" />
+        <result column="time" jdbcType="VARCHAR" property="time" />
+        <result column="state" jdbcType="INTEGER" property="state" />
+    </resultMap>
+    <select id="selectBacklog"  parameterType="com.songhaozhi.mayday.model.domain.Backlog" resultMap="BaseResultMap">
+        select id,backlog_id,backlog_name,time,state from mayday_backlog
+        <where>
+            <if test="state != null">
+                state=#{state,jdbcType=INTEGER}
+            </if>
+        </where>
+
+    </select>
+    <update id="updateBacklog" parameterType="com.songhaozhi.mayday.model.domain.Backlog">
+        update mayday_backlog set state=#{state,jdbcType=INTEGER}
+        <where>
+            <if test="backlogId != null">
+                backlog_id=#{backlogId,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </update>
+    <insert id="insertBacklog" parameterType="com.songhaozhi.mayday.model.domain.Backlog">
+    insert into mayday_backlog (backlog_id, backlog_name,time,state)
+    values (#{backlogId}, #{backlogName},#{time},#{state})
+  </insert>
+
+    <select id="selectBacklogCount"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*)from mayday_backlog where state=#{state,jdbcType=INTEGER}
+    </select>
+<delete id="deleteBacklog" parameterType="com.songhaozhi.mayday.model.domain.Backlog">
+    delete from mayday_backlog where backlog_id=#{backlogId,jdbcType=VARCHAR}
+
+</delete>
+
+</mapper>
