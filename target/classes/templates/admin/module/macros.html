@@ -3,6 +3,7 @@
 
 <div th:fragment="comm">
 	<script type="text/javascript" th:src="@{/plugins/vali/js/jquery-3.2.1.min.js}"></script>
+	<!--<script type="text/javascript" th:src="@{/plugins/vali/js/jqPaginator.min/js}"></script>-->
 	<script type="text/javascript" th:src="@{/plugins/vali/js/popper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/bootstrap.min.js}"></script>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/main.js}"></script>
@@ -200,6 +201,7 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">页面</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
             <li><a class="treeview-item" href="/admin/page"><i class="icon fa fa-circle-o"></i>所有页面</a></li>
+			  <li><a class="treeview-item" href="/apiTest"><i class="icon fa fa-circle-o"></i>接口页面</a></li>
             <li><a class="treeview-item" href="/admin/page/new"><i class="icon fa fa-circle-o"></i>新建页面</a></li>
           </ul>
         </li>

@@ -9,27 +9,10 @@ function request_ajax(url, data, type) {
         success: function (data) {
             //alert('data:'+typeof(data));
             $("#textareaid").text(formatJson(JSON.stringify(data)));
-            request_time_ajax('{}');
-            // result = data;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#textareaid").text(formatJson(jqXHR.responseText));
-            //$("#textareaid").text(formatJson(JSON.stringify(error)));
-            //   result = data;
         }
-    });
-}
-function request_time_ajax(data){
-    $.ajax({
-        url: "/sendTime",
-        data: data,
-        type: "POST",
-        dataType: "text",
-        success: function (result) {
-        //alert('data:'+typeof(data));
-        $("#time").val(result);
-        // result = data;
-    }
     });
 }
 
@@ -47,11 +30,9 @@ function request_ajax_json(url, data, type) {
             //alert('data:'+typeof(data));
             $("#textareaid").text(formatJson(JSON.stringify(data)));
 
-            // result = data;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             $("#textareaid").text(formatJson(jqXHR.responseText));
-            //$("#textareaid").text(formatJson(JSON.stringify(error)));
         }
     });
 }

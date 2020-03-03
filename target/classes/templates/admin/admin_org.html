@@ -22,7 +22,10 @@
             <div class="tile">
                 <input type="hidden" id="articleId">
                 <div class="col-md-4 orgtree" style="float: left">
-                    <select id="orglist"></select>
+                    <select id="orglist">
+                        <option id="请选择">请选择机构</option>
+                    </select>
+
                 </div>
 
                 <div class="table-responsive col-md-8">
@@ -40,9 +43,6 @@
                     </table>
                     <div class="container"  style="float: right;">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </div>
                 </div>
@@ -63,14 +63,18 @@
             var value = this.value;
             $(".baby").empty();
             $.ajax({
-                url:"/admin/org/getOrgList",
-                data:{fatherId:value, page: 1, limit:10},
+                url:"/admin/org/getOrgList2",
                 type:"get",
+                data:{fatherId:value, page: 1, limit:10},
                 success:function (data) {
-                    console.log(data.data)
+                    $(".baby").empty();
                     for(var i = 0; i<data.data.length; i++) {
-                        $(".baby").append("<tr><td>" + data.data[i].organName +"</td>" +
-                            "<td>"+data.data[i].code+"</td></tr>");
+                        $(".baby").append("<tr><td>" + data.data[i].organName + "</td>" +
+                            "<td>" + data.data[i].code + "</td></tr>");
+                    }
+                    $(".pagination").empty();
+                    for(var i = 0; i<= data.size/10; i++){
+                        $(".pagination").append("<li class='page-item' value='"+(i+1)+"'><a class='page-link' id='"+(i+1)+"' onclick='switchPage(this.id)' >"+(i+1)+"</a></li>");
                     }
                 }
             })
@@ -78,13 +82,30 @@
 
     })
 
+    function switchPage(id){
+        var obj = $("#orglist option:selected").val();
+        console.log(obj);
+        $.ajax({
+            url:"/admin/org/getOrgList2",
+            type:"get",
+            data:{fatherId:obj, page: id, limit:10},
+            success:function(data){
+                $(".baby").empty();
+                for(var i = 0; i<data.data.length; i++) {
+                    $(".baby").append("<tr><td>" + data.data[i].organName + "</td>" +
+                        "<td>" + data.data[i].code + "</td></tr>");
+                }
+            }
+        })
+    }
+
     function getOrgList(){
         $.ajax({
             url:"/admin/org/getOrgList",
             type:"get",
             success:function (data) {
                 for(var i = 0; i<data.data.length; i++){
-                    $("#orglist").append("<option onclick='getOrgMessage(this.value)' id='"+data.data[i].fatherId+"'  value='"+data.data[i].organId+"'>"+data.data[i].organName+"</option>");
+                    $("#orglist").append("<option onclick='getOrgMessage(this.value)' id='"+data.data[i].fatherId+"'  value='"+data.data[i].fatherId+"'>"+data.data[i].organName+"</option>");
 
                 }
             }
@@ -124,4 +145,7 @@
             }
         });
     }
+
+    //分页
+
 </script>

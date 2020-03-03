@@ -20,6 +20,13 @@
       AND fatherid = #{parentId}
     </if>
     order by orderid
-    limit #{startIndex}, #{endIndex}
+    limit #{startIndex}, 10
+  </select>
+
+  <select id="getOrgList2Size" resultType="java.lang.Integer">
+    select count(1) from GXZCC_SYS_ORGAN where 1=1
+    <if test="parentId != null and parentId != '' ">
+      AND fatherid = #{parentId}
+    </if>
   </select>
 </mapper>

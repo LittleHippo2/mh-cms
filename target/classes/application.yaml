@@ -18,7 +18,7 @@ spring:
          type: com.alibaba.druid.pool.DruidDataSource
          url: jdbc:mysql://localhost:3306/mayday?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
          username: root
-         password: 123123
+         password: root
          driver-class-name: com.mysql.jdbc.Driver
   rabbitmq:
     host: 192.168.10.220
@@ -36,27 +36,27 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 sso:
-  BaseUrl: http://172.16.5.4:10005
-  infoUrl : http://172.16.5.4:10005/api/sso/user
-  checkUrl : http://172.16.5.4:10005/api/sso/valtoken
+  BaseUrl: http://172.16.5.200:10005
+  infoUrl : http://172.16.5.200:10005/api/sso/user
+  checkUrl : http://172.16.5.200:10005/api/sso/valtoken
 message :
-  personUrl : http://172.16.5.4:10005/api/msg/message/user/
-  departmentUrl : http://172.16.5.4:10005/api/msg/message/department/
+  personUrl : http://172.16.5.200:10005/api/msg/message/user/
+  departmentUrl : http://172.16.5.200:10005/api/msg/message/department/
 token :
-  url : http://172.16.5.4:10005/api/uaa/oauth/token
-  ssoUrl : http://172.16.5.4:10005/api/sso/authen
+  url : http://172.16.5.200:10005/api/uaa/oauth/token
+  ssoUrl : http://172.16.5.200:10005/api/sso/authen
 log :
-  add : http://172.16.5.4:10005/api/log/addlog
-  get : http://172.16.5.4:10005/api/log/
-  info : http://172.16.5.4:10005/api/log/
-  getplatform : http://172.16.5.4:10005/api/log/
+  add : http://172.16.5.200:10005/api/log/addlog
+  get : http://172.16.5.200:10005/api/log/
+  info : http://172.16.5.200:10005/api/log/
+  getplatform : http://172.16.5.200:10005/api/log/
 subscribe :
-  add : http://172.16.5.4:10005/api/subscribe/add
-  del : http://172.16.5.4:10005/api/subscribe/delete
-  findAll : http://172.16.5.4:10005/api/subscribe/findAll
-  find : http://172.16.5.4:10005/api/subscribe/find
+  add : http://172.16.5.200:10005/api/subscribe/add
+  del : http://172.16.5.200:10005/api/subscribe/delete
+  findAll : http://172.16.5.200:10005/api/subscribe/findAll
+  find : http://172.16.5.200:10005/api/subscribe/find
 
 access:
   appid: cpk.sws.appid1
   secret: C0F48FC8-EC67-4faa-97E6-A9903F5E74AC
-  url: http://172.16.5.4:10005/api/uaa/oauth/token
+  url: http://172.16.5.200:10005/api/uaa/oauth/token

@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
 import com.songhaozhi.mayday.model.domain.ArticleCustom;
@@ -113,7 +110,7 @@ public class AdminController extends BaseController {
 			logService.save(new Log(LogConstant.LOGIN, LogConstant.LOGIN_SUCCES, ServletUtil.getClientIP(request),
 					DateUtil.date()));
 			log.info(js.getString("fullname") + "登录成功");
-			getLogin("", "", session);
+//			getLogin(js.getString("account"), js.getString("password"), session);
 			return "redirect:/admin";
 		}
 		return "admin/admin_login";
@@ -208,6 +205,7 @@ public class AdminController extends BaseController {
 		JSONObject result = JSONObject.parseObject(request);
 		return result;
 	}
+
 
 //	public static void main(String[] args) throws Exception {
 //		System.out.println(getSSoInfo("TGT-6-dEmxOJENFJoRjiWqhS2y7TCKQP-dk12-rzl6I0ppRN0djuOvt0GCFwK4q0fLcOBSTqw3ae6cd8f9be4"));

@@ -14,4 +14,6 @@ public interface OrgMapper {
                          @Param("startIndex") Integer startIndex,
                          @Param("endIndex") Integer endIndex);
 
+   Integer getOrgList2Size(@Param("parentId") String parentId);
+
 }

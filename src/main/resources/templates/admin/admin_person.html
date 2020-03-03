@@ -22,7 +22,9 @@
             <div class="tile">
                 <input type="hidden" id="articleId">
                 <div class="col-md-4 orgtree" style="float: left">
-                    <select id="orglist"></select>
+                    <select id="orglist">
+                        <option id="请选择">请选择机构</option>
+                    </select>
                 </div>
 
                 <div class="table-responsive col-md-8">
@@ -40,9 +42,7 @@
                     </table>
                     <div class="container"  style="float: right;">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -60,6 +60,7 @@
     $(function(){
         getOrgList();
 
+
         $("#orglist").change(function(){
             var value = this.value;
             $(".baby").empty();
@@ -68,16 +69,39 @@
                 data:{orgId:value, page:1 , limit: 10},
                 type:"get",
                 success:function (data) {
-                    console.log(data.data)
+                    $(".baby").empty();
                     for(var i = 0; i<data.data.length; i++) {
                         $(".baby").append("<tr><td>" + data.data[i].fullName +"</td>" +
                             "<td>"+data.data[i].sex+"</td></tr>");
+                    }
+
+                    $(".pagination").empty();
+                    for(var i = 0; i<= data.size/10; i++){
+                        $(".pagination").append("<li class='page-item' value='"+(i+1)+"'><a class='page-link' id='"+(i+1)+"' onclick='switchPage(this.id)' >"+(i+1)+"</a></li>");
                     }
                 }
             })
         })
 
     })
+
+    function switchPage(id){
+        var obj = $("#orglist option:selected").val();
+        $(".baby").empty();
+        $.ajax({
+            url:"/admin/person/getPersonList",
+            type:"get",
+            data:{orgId:obj, page: id, limit:10},
+            success:function(data){
+                $(".baby").empty();
+                for(var i = 0; i<data.data.length; i++) {
+                    $(".baby").append("<tr><td>" + data.data[i].fullName +"</td>" +
+                        "<td>"+data.data[i].sex+"</td></tr>");
+                }
+            }
+        })
+    }
+
 
     function getOrgList(){
         $.ajax({
@@ -87,7 +111,7 @@
 
                 for(var i = 0; i<data.data.length; i++){
                     $("#orglist").append("<option onclick='getOrgMessage(this.value)' id='"+data.data[i].organId+"'  value='"+data.data[i].organId+"'>"+data.data[i].organName+"</option>");
-
+                    console.log(data);
                 }
             }
         })

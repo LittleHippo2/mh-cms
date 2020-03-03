@@ -82,11 +82,11 @@ public class PersonController {
                                     @RequestParam(name ="orgId", required = false)String orgId){
 
         //开始角标
-        int fromIndex = (limit-1) * page;
+        int fromIndex = (page-1) * limit;
         //结束角标
         int toIndex = limit * page;
 
-        return new ResponData(personService.getPersonList(orgId, fromIndex, toIndex));
+        return new ResponData(personService.getPersonList(orgId, fromIndex, toIndex), personService.getPersonsize(orgId));
     }
     
 

@@ -26,4 +26,11 @@ public class OrgServiceImpl implements OrgService {
     public List<Org> getOrgList2(String fatherId, Integer startIndex, Integer endIndex) {
         return orgMapper.getOrgList2(fatherId, startIndex, endIndex);
     }
+
+    @Override
+    public Integer getOrgList2Size(String fatherId) {
+        return orgMapper.getOrgList2Size(fatherId);
+    }
+
+
 }

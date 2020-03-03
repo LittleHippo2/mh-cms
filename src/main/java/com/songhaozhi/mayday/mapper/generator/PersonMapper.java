@@ -10,6 +10,8 @@ public interface PersonMapper {
                               @Param("startIndex") Integer startIndex,
                               @Param("endIndex") Integer endIndex);
 
+   Integer getPersonsize(@Param("orgId") String orgId);
+
 
 
 }

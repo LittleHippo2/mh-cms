@@ -22,4 +22,11 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> getPersonList(String orgId, Integer startIndex, Integer endIndex) {
         return personMapper.getPersonList(orgId,startIndex, endIndex);
     }
+
+    @Override
+    public Integer getPersonsize(String orgId) {
+        return personMapper.getPersonsize(orgId);
+    }
+
+
 }

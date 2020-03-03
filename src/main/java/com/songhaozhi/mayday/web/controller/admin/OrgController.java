@@ -88,7 +88,7 @@ public class OrgController {
     public ResponData getOrlList(
                                  @RequestParam(name ="fatherId", required = false)String fatherId){
 
-        return new ResponData(orgService.getOrgList(fatherId));
+        return new ResponData(orgService.getOrgList(fatherId), 0);
     }
 
     @RequestMapping("/getOrgList2")
@@ -97,11 +97,11 @@ public class OrgController {
                                  @RequestParam(value = "limit", defaultValue = "10") int limit,
                                  @RequestParam(name ="fatherId", required = false)String fatherId){
         //开始角标
-        int fromIndex = (limit-1) * page;
+        int fromIndex = (page-1) * limit;
         //结束角标
         int toIndex = limit * page;
 
-        return new ResponData(orgService.getOrgList2(fatherId, fromIndex, toIndex));
+        return new ResponData(orgService.getOrgList2(fatherId, fromIndex, toIndex), orgService.getOrgList2Size(fatherId));
     }
 
 

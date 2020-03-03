@@ -10,8 +10,18 @@
     join GXZCC_SYS_ORGAN_USER_RELATION sr on su.userid = sr.user_id
     where 1=1
   <if test="orgId != null and orgId != '' ">
-   AND sr.ORGAN_ID = "root"
+   AND sr.ORGAN_ID = #{orgId}
   </if>
-    limit #{startIndex}, #{endIndex}
+
+    limit #{startIndex}, 10
+  </select>
+
+  <select id="getPersonsize" resultType="java.lang.Integer">
+    select count(1) from GXZCC_SYS_USER su
+    join GXZCC_SYS_ORGAN_USER_RELATION sr on su.userid = sr.user_id
+    where 1=1
+    <if test="orgId != null and orgId != '' ">
+      AND sr.ORGAN_ID = #{orgId}
+    </if>
   </select>
 </mapper>

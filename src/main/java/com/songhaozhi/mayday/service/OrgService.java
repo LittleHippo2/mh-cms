@@ -9,4 +9,6 @@ public interface OrgService {
     List<Org> getOrgList(String fatherId);
 
     List<Org> getOrgList2(String fatherId, Integer startIndex, Integer endIndex);
+
+    Integer getOrgList2Size(String fatherId);
 }

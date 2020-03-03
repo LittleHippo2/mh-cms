@@ -11,6 +11,7 @@
 	<script type="text/javascript" th:src="@{/plugins/toast/jquery.toast.js}"></script>
     <script type="text/javascript" th:src="@{/js/show.js}"></script>
     <script type="text/javascript" th:src="@{/js/request.js}"></script>
+    <script type="text/javascript" th:src="@{/js/format.js}"></script>
 </div>
 
 <div th:fragment="bootstrapValidator">
@@ -213,7 +214,7 @@
     });
     </script>
 </th:block>
-<div region="north" split="true" title="基本信息" style="float: top;padding-left:35%;height:150px">
+<div region="north" split="true" title="基本信息" style="padding-left:20%;height:150px">
     <br>
     接口调用时长:<input  id="time" type="text"  style="width:128px;"   />
     </br></br>
@@ -221,7 +222,7 @@
     </br></br>
     <label>微服务access_token: </label><label id="microservice_token"></label>
 </div>
-<div  id="content" title="接口测试" style="float: right;padding:40px;">
+<div  id="content" title="接口测试" style="padding-left:20%;">
 
 </div>
 </body>

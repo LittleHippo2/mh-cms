@@ -7,4 +7,6 @@ import java.util.List;
 public interface PersonService {
 
     List<Person> getPersonList(String orgId, Integer startIndex, Integer endIndex);
+
+    Integer getPersonsize(String orgId);
 }
