@@ -20,6 +20,9 @@ public class TokenController extends BaseController {
     @Value("${token.ssoUrl}")
     private String ssoUrl;
 
+    @Value("${sso.BaseUrl}")
+    private String BaseUrl;
+
     /**
      * getToken
      * @param client_id
@@ -65,5 +68,31 @@ public class TokenController extends BaseController {
         }
         return  result;
     }
+
+    /**
+     * 7.增量同步
+     * @param starttime
+     * @param department
+     * @return
+     */
+    @RequestMapping(value = "/IncrSyn")
+    @ResponseBody
+    public JSONObject IncrSyn(String access_token, String starttime, String department) {
+        JSONObject result = new JSONObject();
+        String url = "/api/org/syncdepartments";
+        Map inParam = new HashMap<String,Object>();
+
+        try{
+            url = url+"?access_token="+access_token;
+            url = url+"&starttime="+starttime;
+            url = url+"&department="+department;
+            String request = HttpUtil.get(BaseUrl+url,inParam,3000,3000);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e ){
+            result.put("error","error");
+        }
+        return result;
+    }
+
 
 }

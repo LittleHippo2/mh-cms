@@ -50,9 +50,11 @@ function request_ajax_token(url, data, type, get_token_type) {
             //alert('data:'+typeof(data));
             $("#textareaid").text(formatJson(JSON.stringify(data)));
             $("#" + get_token_type).text(data.access_token);
+            // result = data;
         },
         error: function (error) {
             $("#textareaid").text(formatJson(JSON.stringify(error)));
+            //   result = data;
         }
     });
 
