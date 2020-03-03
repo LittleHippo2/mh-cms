@@ -94,5 +94,24 @@ public class TokenController extends BaseController {
         return result;
     }
 
-
+    /**
+     * refresh token
+     */
+    @RequestMapping(value = "/refresh")
+    @ResponseBody
+    public JSONObject refresh(String access_token){
+        JSONObject result = new JSONObject();
+        String url = "/api/sso/refresh/";
+        Map inParam = new HashMap<String,Object>();
+        try{
+            url = url+access_token;
+            String request = HttpUtil.post(BaseUrl+url,inParam,3000,3000);
+            log.info("result:"+request);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            result.put("result","error");
+        }
+        return  result;
+    }
 }
