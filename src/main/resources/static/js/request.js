@@ -265,7 +265,7 @@ function msg_one_user() {//4.3.1发送消息至个人
     var userid = $("#m_userid").val();
     var m_content = $("#m_content").val();
 
-    var url = '/sendOnce';
+    var url = '/sendPerson';
     // var url = 'http://'+ip+':'+port+'/api/msg/message/user/'+userid+'?access_token='+$('label#microservice_token').text();
     var body = {access_token: $('label#microservice_token').text(), userid: userid, content: m_content};
     request_ajax(url, body, 'POST');
@@ -278,7 +278,7 @@ function msg_more_user() { //4.3.2.发送消息至多人
     var userid = $("#m_userid").val();
     var m_content = $("#m_content").val();
 
-    var url = '/sendOnce';
+    var url = '/sendPerson';
     // var url = 'http://'+ip+':'+port+'/api/msg/message/user/'+userid+'?access_token='+$('label#microservice_token').text();
     var body = {access_token: $('label#microservice_token').text(), userid: userid, content: m_content};
     request_ajax(url, body, 'POST');

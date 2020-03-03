@@ -6,6 +6,7 @@ import com.songhaozhi.mayday.web.controller.admin.BaseController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -30,7 +31,7 @@ public class LogController extends BaseController {
      * 添加日志
      * @return
      */
-    @RequestMapping(value = "/addlog")
+    @RequestMapping(value = "/addlog" ,method = RequestMethod.POST)
     @ResponseBody
     public JSONObject addlog(String access_token,String content){
         JSONObject result = new JSONObject();

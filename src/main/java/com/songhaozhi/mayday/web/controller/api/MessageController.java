@@ -5,14 +5,11 @@ import com.songhaozhi.mayday.util.HttpUtil;
 import com.songhaozhi.mayday.web.controller.admin.BaseController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping(value = "/admin/message")
 @Controller
 public class MessageController extends BaseController {
 
@@ -23,12 +20,13 @@ public class MessageController extends BaseController {
     private String departmentUrl;
 
 
-    @GetMapping
-    public String message() {
-        return "admin/admin_message";
-    }
+//    @GetMapping
+//    public String message() {
+//        return "admin/admin_message";
+//    }
 
-    @PostMapping(value = "/sendPerson")
+    @RequestMapping(value = "/sendPerson")
+    @ResponseBody
     public JSONObject sendOnce(String access_token, String userid, String content){
         JSONObject result = new JSONObject();
         Map inParam = new HashMap<String,Object>();
@@ -49,7 +47,8 @@ public class MessageController extends BaseController {
         return result;
     }
 
-    @PostMapping(value = "/sendDepartment")
+    @RequestMapping(value = "/sendDepartment")
+    @ResponseBody
     public JSONObject sendDepartment(String access_token,String content,String departmentid){
         JSONObject result = new JSONObject();
         Map inParam = new HashMap<String,Object>();
