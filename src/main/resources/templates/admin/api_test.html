@@ -12,6 +12,7 @@
     <script type="text/javascript" th:src="@{/js/show.js}"></script>
     <script type="text/javascript" th:src="@{/js/request.js}"></script>
     <script type="text/javascript" th:src="@{/js/format.js}"></script>
+    <script type="text/javascript" th:src="@{/js/fypApi.js}"></script>
 </div>
 
 <div th:fragment="bootstrapValidator">
@@ -62,11 +63,21 @@
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">登录服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul>
                     <li><a class="treeview-item" href="javascript:void(0)" onclick="get_sso_token_show('2.2.1获取单点登录access_token')"><i class="icon fa fa-circle-o"></i>获取单点登录token</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_sso_user_show('2.2.2获取单点登录用户信息')"><i class="icon fa fa-circle-o"></i>获取用户信息</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="valid_sso_token_show('2.2.3验证token')"><i class="icon fa fa-circle-o"></i>验证token</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)" onclick="refresh_sso_token_show('2.2.4刷新单点登录token有效期')"><i class="icon fa fa-circle-o"></i>刷新单点登录token有效期</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="change_sso_password_show('2.2.5修改密码')"><i class="icon fa fa-circle-o"></i>修改密码</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="logou_sso_show('2.2.6注销单点登录token')"><i class="icon fa fa-circle-o"></i>注销单点登录token</a></li>
                 </ul>
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">组织机构服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_deparement_list_show('3.2.1获取部门列表')"><i class="icon fa fa-circle-o"></i>获取部门列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_more_department_list_show('3.2.2获取多部门列表')"><i class="icon fa fa-circle-o"></i>获取多部门列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_department_info_show('3.2.3获取部门详情')"><i class="icon fa fa-circle-o"></i>获取部门详情</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_user_list_show('3.2.4获取人员列表')"><i class="icon fa fa-circle-o"></i>获取人员列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_userinfoByAccount_show('3.2.5获取人员详情(根据帐号)')"><i class="icon fa fa-circle-o"></i>获取人员详情（根据account）</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_userinfo_show('3.2.6获取人员详情(根据id)')"><i class="icon fa fa-circle-o"></i>获取人员详情</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)" onclick="sync_show('3.2.7增量同步接口')"><i class="icon fa fa-circle-o"></i>增量同步接口</a></li>
                 </ul>
             </li>
@@ -206,15 +217,25 @@
     });
     </script>
 </th:block>
-<div region="north" split="true" title="基本信息" style="padding-left:20%;height:150px">
-    <br>
-    接口调用时长:<input  id="time" type="text"  style="width:128px;"   />
-    </br></br>
-    <label>单点登录access_token: </label><label id="sso_token"></label>
-    </br></br>
-    <label>微服务access_token: </label><label id="microservice_token"></label>
+<div region="north" split="true" title="基本信息" style="padding-left:20%;padding-top:5%;height:150px">
+
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <td th:width="300"><label>接口调用时长:</label></td>
+            <td th:width="500"><label id="time"></label></td>
+        </tr>
+        <tr>
+            <td th:width="200"><label>单点登录access_token: </label></td>
+            <td th:width="500"><label id="sso_token"></label></td>
+        </tr>
+        <tr>
+            <td th:width="300"><label>微服务access_token: </label></td>
+            <td th:width="500"><label id="microservice_token"></label></td>
+        </tr>
+
+    </table>
 </div>
-<div  id="content" title="接口测试" style="padding-left:20%;">
+<div  id="content" title="接口测试" style="padding-left:20%;padding-top:8%">
 
 </div>
 </body>

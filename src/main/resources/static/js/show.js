@@ -7,101 +7,91 @@ function todo() {
 function get_m_token_show(apiname){ //1.2.1获取微服务access_token
  
 	var div = document.getElementById("content");
-			
-			div.innerHTML ='<p>'+apiname+'</p>'
-			+'请输入appid : <input  id="appid" type="text" value="base.csse.desktop"   style="width:500px;"  value="" /> </br></br>'
-			+'请输入secret: <input  id="secret" type="text"  value="a75b5772-f005-4dbe-b5e0-9ac7793533cc"  style="width:500px;"  value="" /> '
-			+'</br> </br>'
-		    +'<input type="submit"   value="测试" onclick="get_m_token()" />'
-		    +'<p>返回结果</p>'
-			+'<textarea id="textareaid" rows="30" cols="120"   />'
-			+'</textarea>'
-		    ;
-	// <p>apiname</p>
-			// 请输入appid : <input  id="appid" type="text"   style="width:500px;"  value="" /> </br>
-			// 请输入secret: <input  id="secret" type="text"   style="width:500px;"  value="" /> 
-			
-			
-			// </br>
-			// </br>
-			// <input type="submit"   value="测试" onclick="test()" />
-			// <p>返回结果</p>
-			// <textarea id="123" rows="10" cols="80"   />		
-			// </textarea>
+
+	div.innerHTML ='<b><p>获取微服务access_token</p></b>'
+		+'<p>1、接口说明</p>'
+		+'<p style="text-indent:2em;">各众创应用在调用平台提供的核心服务接口（除登录服务外）时，需携带微服务access_token以便通过认证从而获取返回信息。该access_token表示应用的身份，是应用的全局唯一凭证，需通过应用id（client_id）及秘钥（client_secret）调用获取微服务access_token接口获得。</p>'
+		+'<p style="text-indent:2em;">其中，应用id（client_id）及秘钥（client_secret）需向平台统一申请。</p>'
+		+'<p>2、接口测试</p>'
+		+'<input type="submit"   value="测试" onclick="get_m_token()" style=""/><br><br>'
+		+'<table class="table table-striped table-bordered table-hover">'
+		+'<tr><td><label>请输入appid :</label></td>'
+		+'<td><input  id="appid" type="text" value="legacycpk.csse.cms"   style="width:500px;"  value="" /></td></tr>'
+		+'<tr><td><label>请输入secret: </label></td>'
+		+'<td><input  id="secret" type="text"  value="test123"  style="width:500px;"  value="" /></td></tr>'
+		+'<tr><td><label>返回结果</label></td>'
+		+'<td><textarea id="textareaid" rows="20" cols="120"/></textarea></td></tr></table>';
+
+
  }
  function get_sso_token_show(apiname){ //2.2.1获取单点登录access_token
 		var div = document.getElementById("content");
 			
-			div.innerHTML ='<p>'+apiname+'</p>'
-			+'请输入用用户账号 : <input  id="sso_username" type="text"  style="width:500px;"  value="admin" /></br> </br>'
-			+'请输入密码 : &emsp;&emsp;&emsp;<input  id="sso_password" type="text"   style="width:500px;"  value="password02!" /></br></br> '
-			+'请输入登录模式:&emsp;&nbsp; <input  id="sso_loginmodel" type="text"   style="width:500px;"  value="110" /></br></br>'
-			+'请输入service:&emsp;&emsp;<input  id="sso_service" type="text"   style="width:500px;"  value="172.16.5.200:10004/zrsso51/index.html" /></br>'
-			+'</br></br>'
-			+'<input type="submit"   value="测试" onclick="get_sso_token()" />'
-		    +'<p>返回结果</p>'
-			+'<textarea id="textareaid" rows="30" cols="120"   />'
-			+'</textarea>'
-		    ;
-		
-			// 请输入用户名 : <input  id="sso_username" type="text"   style="width:500px;"  value="" /> </br>
-			 // 请输入密码: <input  id="sso_password" type="text"   style="width:500px;"  value="" /></br> 
-			 // 请输入登录模式: <input  id="sso_loginmodel" type="text"   style="width:500px;"  value="" /></br>
-			
-			 // </br>
-			 // </br>
-			 // <input type="submit"   value="测试" onclick="get_sso_token()" />
-			 // <p>返回结果</p>
-			 // <textarea id="textareaid" rows="10" cols="80"   />		
-			 // </textarea>
+		div.innerHTML ='<b><p>获取单点登录access_token</p></b>'
+			+'<p>1、接口说明</p>'
+			+'<p style="text-indent:2em;">各个众创应用在获取到单点登录token后，需先调用验证token接口，验证该token的合法性，若token合法则表示登录成功，实现免等操作。具体登录的人员信息，可通过调用获取用户信息接口获得。</p>'
+			+'<p style="text-indent:2em;">验证token相关说明：</p>'
+			+'<p style="text-indent:4em;">1）桌面应用在token到期前自动续租保持不变；</p>'
+			+'<p style="text-indent:4em;">2）桌面崩溃后，通过桌面守护进程自动重启，启动完成后继续使用之前有效的token；</p>'
+			+'<p style="text-indent:4em;">3）桌面守护进程崩溃了，提示桌面发生重大错误，需要重新登录，强制退出所有app，再次登录，获取新的有效token；</p>'
+			+'<p style="text-indent:4em;">4）桌面会定期刷新验证token有效性。</p>'
+			+'<p>2、接口测试</p>'
+			+'<input type="submit"   value="测试" onclick="get_sso_token()" /><br><br>'
+			+'<table class="table table-striped table-bordered table-hover">'
+			+'<tr><td><label>请输入用用户账号 :</label></td>'
+			+'<td><input  id="sso_username" type="text"  style="width:500px;"  value="sysadmin" /></td></tr>'
+			+'<tr><td><label>请输入密码 :</label></td>'
+			+'<td><input  id="sso_password" type="text"   style="width:500px;"  value="password02!" /></td></tr>'
+			+'<tr><td><label>请输入登录模式:</label></td>'
+			+'<td><input  id="sso_loginmodel" type="text"   style="width:500px;"  value="100" /></td></tr>'
+			+'<tr><td><label>请输入service地址:</label></td>'
+			+'<td><input  id="sso_service" type="text"   style="width:500px;"  value="172.16.5.200:10004/zrsso51/index.html" /></td></tr>'
+			+'<tr><td><label>返回结果</label></td>'
+			+'<td><textarea id="textareaid" rows="20" cols="120"/></textarea></td></tr></table>';
+
+
  }
  function get_sso_user_show(apiname){  //2.2.2获取单点登录用户信息
 		var div = document.getElementById("content");
 			
-		div.innerHTML ='<p>'+apiname+'</p>'
-		+'</br></br>'
-		+'<input type="submit"   value="测试" onclick="get_sso_user()" />'
-		+'<p>返回结果</p>'
-		+'<textarea id="textareaid" rows="30" cols="120"   />'
-		+'</textarea>'
-		;
+		div.innerHTML ='<b><p>获取单点登录用户信息</p></b>'
+			+'<input type="submit"   value="测试" onclick="get_sso_user()" /><br><br>'
+			+'<table class="table table-striped table-bordered table-hover">'
+			+'<tr><td><label>返回结果</label></td>'
+			+'<td><textarea id="textareaid" rows="20" cols="120"/></textarea></td></tr></table>';
  }
  function valid_sso_token_show(apiname){  //2.2.3验证token
 		var div = document.getElementById("content");
 			
-		div.innerHTML ='<p>'+apiname+'</p>'
-		+'</br></br>'
-		+'<input type="submit"   value="测试" onclick="valid_sso_token()" />'
-		+'<p>返回结果</p>'
-		+'<textarea id="textareaid" rows="30" cols="120"   />'
-		+'</textarea>'
-		;
+		div.innerHTML ='<b><p>验证token</p></b>'
+			+'<input type="submit"   value="测试" onclick="valid_sso_token()" /><br><br>'
+			+'<tr><td><label>返回结果</label></td>'
+			+'<td><textarea id="textareaid" rows="20" cols="120"/></textarea></td></tr></table>';
  }
  function refresh_sso_token_show(apiname){ //2.2.4刷新单点登录token有效期
 		var div = document.getElementById("content");
 			
-		div.innerHTML ='<p>'+apiname+'</p>'
-		+'</br></br>'
-		+'<input type="submit"   value="测试" onclick="refresh_sso_token()" />'
-		+'<p>返回结果</p>'
-		+'<textarea id="textareaid" rows="30" cols="120"   />'
-		+'</textarea>'
-		;
+		div.innerHTML ='<b><p>刷新单点登录token有效期</p></b>'
+		+'<input type="submit"   value="测试" onclick="refresh_sso_token()" /><br><br>'
+		+'<tr><td><label>返回结果</label></td>'
+		+'<td><textarea id="textareaid" rows="20" cols="120"/></textarea></td></tr></table>';
  }
  function change_sso_password_show(apiname){  //2.2.5修改密码
 		var div = document.getElementById("content");
 
-		div.innerHTML ='<p>'+apiname+'</p>'
-		+'请输入用户账号 : <input  id="sso_username" type="text"   style="width:500px;"  value="" /></br> </br>'
-		+'请输入旧密码: <input  id="sso_old_password" type="text"   style="width:500px;"  value="" /></br></br> '
-		+'请输入新密码: <input  id="sso_new_password" type="text"   style="width:500px;"  value="" /></br></br>'
-		+'请重复新密码: <input  id="sso_re_password" type="text"   style="width:500px;"  value="" /></br>'
-		+'</br></br>'
-		+'<input type="submit"   value="测试" onclick="sso_password()" />'
-		+'<p>返回结果</p>'
-		+'<textarea id="textareaid" rows="30" cols="120"   />'
-		+'</textarea>'
-		;
+		div.innerHTML ='<b><p>修改密码</p></b>'
+			+'<input type="submit"   value="测试" onclick="sso_password()" /><br><br>'
+
+			+'<tr><td><label>请输入用户账号:</label></td>'
+			+'<td><input  id="sso_username" type="text"   style="width:500px;"  value="" /></td></tr></table>';
+			+'<tr><td><label>请输入旧密码:</label></td>'
+			+'<td><input  id="sso_old_password" type="text"   style="width:500px;"  value="" /></td></tr></table>';
+			+'<tr><td><label>请输入新密码:</label></td>'
+			+'<td><input  id="sso_new_password" type="text"   style="width:500px;"  value="" /></td></tr></table>';
+			+'<tr><td><label>请重复新密码:</label></td>'
+			+'<td><input  id="sso_re_password" type="text"   style="width:500px;"  value="" /></td></tr></table>';
+			+'<tr><td><label>返回结果</label></td>'
+			+'<td><textarea id="textareaid" rows="20" cols="120"/></textarea></td></tr></table>';
  }
  function logou_sso_show(apiname){//2.2.6注销单点登录token
 		var div = document.getElementById("content");
