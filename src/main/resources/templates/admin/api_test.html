@@ -2,6 +2,7 @@
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="comm">
+    <title>平台接口测试</title>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/popper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/bootstrap.min.js}"></script>
@@ -94,7 +95,7 @@
                     <li><a class="treeview-item" href="javascript:void(0)" onclick="add_log_show('5.1.增加日志操作')"><i class="icon fa fa-circle-o"></i>增加日志操作</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log1_show('5.2.查询日志（条件一）')"><i class="icon fa fa-circle-o"></i>根据用户名审计应用日志</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log2_show('5.3.查询日志（条件二）')"><i class="icon fa fa-circle-o"></i>根据应用标识审计应用日志</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>根据应用标识审计平台日志</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log3_show('5.3.查询日志（条件二）')"><i class="icon fa fa-circle-o"></i>根据应用标识审计平台日志</a></li>
                 </ul>
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">检索服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -136,13 +137,13 @@
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">办公桌面信息屏接口</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>打开应用</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>设置新窗口打开大小</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>获取应用列表</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>获取应用详情</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>重新加载</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>清空缓存</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用需实现接口说明</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="openApp()"><i class="icon fa fa-circle-o"></i>打开应用</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="setWinSize()"><i class="icon fa fa-circle-o"></i>设置新窗口打开大小</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="getAppList()"><i class="icon fa fa-circle-o"></i>获取应用列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="getAppListInfo()"><i class="icon fa fa-circle-o"></i>获取应用详情</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="reload()"><i class="icon fa fa-circle-o"></i>重新加载</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="clearCache()"><i class="icon fa fa-circle-o"></i>清空缓存</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" ><i class="icon fa fa-circle-o"></i>应用需实现接口说明</a></li>
                 </ul>
             </li>
         </ul>
@@ -234,6 +235,7 @@
         </tr>
 
     </table>
+    <br><br>
 </div>
 <div  id="content" title="接口测试" style="padding-left:20%;padding-top:8%">
 

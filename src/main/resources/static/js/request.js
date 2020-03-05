@@ -349,7 +349,17 @@ function get_log2() {//5.3.查询日志（条件二）
     var body ={access_token:$('label#microservice_token').text(),appid:appid,starttime:starttime,endtime:endtime};
     request_ajax(url, body, 'GET');
 }
-
+function get_log3() {//5.3.查询日志（条件三）
+    var ip = $("#ip").val();
+    var port = $("#port").val();
+    var appid = $("#log_appid").val();
+    var starttime = $("#log_starttime").val();
+    var endtime = $("#log_endtime").val();
+    var url = '/getplatformlogs';
+    // var url = 'http://' + ip + ':' + port + '/api/log/' + appid + '/getloginfo?access_token=' + $('label#microservice_token').text() + '&starttime=' + starttime + '&endtime=' + endtime;
+    var body ={access_token:$('label#microservice_token').text(),appid:appid,starttime:starttime,endtime:endtime};
+    request_ajax(url, body, 'GET');
+}
 function search() {//6.1.获取应用基本信息
     var ip = $("#ip").val();
     var port = $("#port").val();
