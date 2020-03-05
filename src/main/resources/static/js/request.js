@@ -129,11 +129,22 @@ function sso_password() { //2.2.5修改密码
     request_ajax(url, body, 'POST');
 }
 
-function logou_sso() {//2.2.6注销单点登录token
+function sso_oapassword() { //2.2.5修改密码
     var ip = $("#ip").val();
     var port = $("#port").val();
-    var url = 'http://' + ip + ':' + port + '/api/sso/logout/' + $('label#sso_token').text();
-    var body = {};
+    var username = $("#sso_username").val();
+    var old_password = $("#sso_old_password").val();
+    var new_password = $("#sso_new_password").val();
+    var re_password = $("#sso_re_password").val();
+    var url = '/token/updateoaPassword';
+    // var url = 'http://'+ip+':'+port+'/api/sso/password';
+    var body = {userName: username, oldPassword: old_password, newPassword: new_password, repassword: re_password};
+    request_ajax(url, body, 'POST');
+}
+
+function logou_sso() {//2.2.6注销单点登录token
+    var url =  '/logout' ;
+    var body = {access_token: $('label#sso_token').text()};
     request_ajax(url, body, 'POST');
 }
 

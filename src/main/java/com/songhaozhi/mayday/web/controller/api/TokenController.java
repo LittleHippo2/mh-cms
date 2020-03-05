@@ -114,4 +114,124 @@ public class TokenController extends BaseController {
         }
         return  result;
     }
+
+
+    /**
+     * get sso token info
+     * @param access_token
+     * @return
+     */
+    @RequestMapping(value = "/getSsoInfo")
+    @ResponseBody
+    public JSONObject getSsoInfo(String access_token){
+        JSONObject result = new JSONObject();
+        String  url = "/api/sso/user";
+        Map inParam = new HashMap<String,Object>();
+        inParam.put("access_token",access_token);
+        try{
+            String request = HttpUtil.post(BaseUrl+url,inParam,3000,3000);
+            log.info("result:"+request);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            result.put("result","error");
+        }
+        return  result;
+    }
+
+    /**
+     * check token
+     * @param access_token
+     * @return
+     */
+    @RequestMapping(value = "/checkToken")
+    @ResponseBody
+    public JSONObject checkToken(String access_token){
+        JSONObject result = new JSONObject();
+        String url = "/api/sso/valtoken";
+
+        Map inParam = new HashMap<String,Object>();
+
+        try{
+            url = url + "/"+access_token;
+            String request = HttpUtil.post(BaseUrl+url,inParam,3000,3000);
+            log.info("result:"+request);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            result.put("result","error");
+        }
+        return  result;
+    }
+
+    /**
+     * update password
+     */
+    @RequestMapping(value = "/token/updatePassword")
+    @ResponseBody
+    public JSONObject updatePassword(String username,String oldPassword,String newPassword,String repassword){
+        JSONObject result = new JSONObject();
+        String url = "/api/sso/password";
+        Map inParam = new HashMap<String,Object>();
+        inParam.put("username",username);
+        inParam.put("oldPassword",oldPassword);
+        inParam.put("newPassword",newPassword);
+        inParam.put("repassword",repassword);
+        try{
+            String request = HttpUtil.post(url,inParam,3000,3000);
+            log.info("result:"+request);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            result.put("result","error");
+        }
+        return  result;
+    }
+
+    /**
+     * update oapassword 不校验密码复杂度
+     */
+    @RequestMapping(value = "/token/updateoaPassword")
+    @ResponseBody
+    public JSONObject updateoaPassword(String username,String oldPassword,String newPassword,String repassword){
+        JSONObject result = new JSONObject();
+        String url = "/api/sso/oapassword";
+        Map inParam = new HashMap<String,Object>();
+        inParam.put("username",username);
+        inParam.put("oldPassword",oldPassword);
+        inParam.put("newPassword",newPassword);
+        inParam.put("repassword",repassword);
+        try{
+            String request = HttpUtil.post(url,inParam,3000,3000);
+            log.info("result:"+request);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            result.put("result","error");
+        }
+        return  result;
+    }
+
+    /**
+     * 注销登录
+     * @param access_token
+     * @return
+     */
+    @RequestMapping(value = "/logout")
+    @ResponseBody
+    public JSONObject logout(String access_token){
+        JSONObject result = new JSONObject();
+        String url = "/api/sso/logout";
+        Map inParam = new HashMap<String,Object>();
+        try{
+            url = url + "/"+access_token;
+            String request = HttpUtil.post(BaseUrl+url,inParam,3000,3000);
+            log.info("result:"+request);
+            result = JSONObject.parseObject(request);
+        }catch (Exception e){
+            log.error(e.getMessage());
+            result.put("result","error");
+        }
+        return  result;
+    }
 }
