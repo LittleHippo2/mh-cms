@@ -5,6 +5,8 @@
     <result column="article_id" jdbcType="INTEGER" property="articleId" />
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
   </resultMap>
+
+    <!--获取doc-->
   <select id="getDocData" resultType="com.songhaozhi.mayday.model.dto.DocDate">
     select * from `doc-data`
       <where>
@@ -25,5 +27,49 @@
       </foreach>
     </where>
   </select>
+
+    <!--获取email-->
+    <select id="getEmailData" resultType="com.songhaozhi.mayday.model.dto.EmaliDate">
+        select * from `email-data`
+        <where>
+            <foreach collection="like" item="item" index="index" separator="or">
+                title like concat('%', #{item}, '%')
+            </foreach>
+        </where>
+        <if test="num != 0">
+            limit 0, #{num}
+        </if>
+    </select>
+
+    <select id="getEmailDataCount" resultType="java.lang.Integer">
+        select count(1) from `email-data`
+        <where>
+            <foreach collection="like" item="item" index="index" separator="or">
+                title like concat('%', #{item}, '%')
+            </foreach>
+        </where>
+    </select>
+
+    <!--app数据-->
+    <select id="getApplData" resultType="java.lang.String">
+        select link from `app-data`
+        <where>
+            <foreach collection="like" item="item" index="index" separator="or">
+                title like concat('%', #{item}, '%')
+            </foreach>
+        </where>
+        <if test="num != 0">
+            limit 0, #{num}
+        </if>
+    </select>
+
+    <select id="getAppDataCount" resultType="java.lang.Integer">
+        select count(1) from `app-data`
+        <where>
+            <foreach collection="like" item="item" index="index" separator="or">
+                title like concat('%', #{item}, '%')
+            </foreach>
+        </where>
+    </select>
 
 </mapper>

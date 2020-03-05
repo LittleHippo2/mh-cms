@@ -442,3 +442,5 @@ function subscribe_article_user() {//6.4.查询用户是否订阅了该文章
     var body={access_token:$('label#microservice_token').text(),userId:userid,articleId:articleId};
     request_ajax(url, body, 'GET');
 }
+
+
