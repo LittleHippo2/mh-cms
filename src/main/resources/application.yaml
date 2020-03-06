@@ -57,6 +57,6 @@ subscribe :
   find : http://172.16.5.200:10005/api/subscribe/find
 
 access:
-  appid: cpk.sws.appid1
-  secret: C0F48FC8-EC67-4faa-97E6-A9903F5E74AC
+  appid: legacycpk.csse.cms
+  secret: test123
   url: http://172.16.5.200:10005/api/uaa/oauth/token
