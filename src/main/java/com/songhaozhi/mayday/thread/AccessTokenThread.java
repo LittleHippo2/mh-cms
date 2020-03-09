@@ -38,7 +38,6 @@ public class AccessTokenThread implements ApplicationRunner{
     public static String accessToken;
 
     public static long startTime;
-
     /**
      * 获取微服务token
      * @param args
@@ -46,6 +45,7 @@ public class AccessTokenThread implements ApplicationRunner{
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        Integer time = 86400000;
         while(true) {
             Map inParam = new HashMap<String, Object>();
             inParam.put("client_id", appid);
@@ -83,13 +83,18 @@ public class AccessTokenThread implements ApplicationRunner{
 
                 startTime = System.currentTimeMillis();
 
-                Integer time = JSONObject.parseObject(request).getInteger("expires_in");
+                time = JSONObject.parseObject(request).getInteger("expires_in");
                 if (time*1000<= 86400000){
                     Thread.sleep(time*1000);
                 }else{
                     Thread.sleep(86400000);
                 }
-            } catch (Exception e) {
+                } catch (Exception e) {
+                if (time*1000<= 86400000){
+                    Thread.sleep(time*1000);
+                }else{
+                    Thread.sleep(86400000);
+                }
             }
 
         }
