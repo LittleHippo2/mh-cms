@@ -2,6 +2,7 @@ package com.songhaozhi.mayday.service.impl;
 
 import com.songhaozhi.mayday.mapper.generator.PersonMapper;
 import com.songhaozhi.mayday.model.dto.Person;
+import com.songhaozhi.mayday.model.dto.User;
 import com.songhaozhi.mayday.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,11 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Integer getPersonsize(String orgId) {
         return personMapper.getPersonsize(orgId);
+    }
+
+    @Override
+    public Integer insertUser(List<User> userList) {
+        return personMapper.insertUser(userList);
     }
 
 

@@ -169,16 +169,16 @@ public class TokenController extends BaseController {
      */
     @RequestMapping(value = "/token/updatePassword")
     @ResponseBody
-    public JSONObject updatePassword(String username,String oldPassword,String newPassword,String repassword){
+    public JSONObject updatePassword(String userName,String oldPassword,String newPassword,String repassword){
         JSONObject result = new JSONObject();
         String url = "/api/sso/password";
         Map inParam = new HashMap<String,Object>();
-        inParam.put("username",username);
-        inParam.put("oldPassword",oldPassword);
-        inParam.put("newPassword",newPassword);
+        inParam.put("account",userName);
+        inParam.put("oldpassword",oldPassword);
+        inParam.put("newpassword",newPassword);
         inParam.put("repassword",repassword);
         try{
-            String request = HttpUtil.post(url,inParam,3000,3000);
+            String request = HttpUtil.post(BaseUrl+url,inParam,3000,3000);
             log.info("result:"+request);
             result = JSONObject.parseObject(request);
         }catch (Exception e){
@@ -193,16 +193,16 @@ public class TokenController extends BaseController {
      */
     @RequestMapping(value = "/token/updateoaPassword")
     @ResponseBody
-    public JSONObject updateoaPassword(String username,String oldPassword,String newPassword,String repassword){
+    public JSONObject updateoaPassword(String userName,String oldPassword,String newPassword,String repassword){
         JSONObject result = new JSONObject();
         String url = "/api/sso/oapassword";
         Map inParam = new HashMap<String,Object>();
-        inParam.put("username",username);
-        inParam.put("oldPassword",oldPassword);
-        inParam.put("newPassword",newPassword);
+        inParam.put("account",userName);
+        inParam.put("oldpassword",oldPassword);
+        inParam.put("newpassword",newPassword);
         inParam.put("repassword",repassword);
         try{
-            String request = HttpUtil.post(url,inParam,3000,3000);
+            String request = HttpUtil.post(BaseUrl+url,inParam,3000,3000);
             log.info("result:"+request);
             result = JSONObject.parseObject(request);
         }catch (Exception e){

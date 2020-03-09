@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
 
-<div th:fragment="comm">
     <title>平台接口测试</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/vali/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/toast/jquery.toast.css}">
+    <link rel="stylesheet" th:href="@{/plugins/simplemde/simplemde.min.css}">
+    <link rel="stylesheet" th:href="@{//cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css}">
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap-fileinput/css/fileinput.min.css}">
+    <link rel="stylesheet" th:href="@{/css/attachment.css}">
+
 	<script type="text/javascript" th:src="@{/plugins/vali/js/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/popper.min.js}"></script>
 	<script type="text/javascript" th:src="@{/plugins/vali/js/bootstrap.min.js}"></script>
@@ -14,38 +26,18 @@
     <script type="text/javascript" th:src="@{/js/request.js}"></script>
     <script type="text/javascript" th:src="@{/js/format.js}"></script>
     <script type="text/javascript" th:src="@{/js/fypApi.js}"></script>
-</div>
 
-<div th:fragment="bootstrapValidator">
 	<script th:src="@{/plugins/bootstrapvalidator/js/bootstrapValidator.min.js}"></script>
 	<script th:src="@{/plugins/bootstrapvalidator/js/language/zh_CN.js}"></script>
-</div>
+    <script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/js/fileinput.min.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/js/locales/zh.js}"></script>
+    <script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/themes/fa/theme.js}"></script>
 
-<div th:fragment="bootstrapFileinput">
-<script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/js/fileinput.min.js}"></script>
-<script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/js/locales/zh.js}"></script>
-<script type="text/javascript" th:src="@{/plugins/bootstrap-fileinput/themes/fa/theme.js}"></script>
 
-</div>
 
-<!-- 顶部栏 -->
- <head th:fragment="head(title)">
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link rel="stylesheet" type="text/css" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">  
-    <link rel="stylesheet" type="text/css" th:href="@{/plugins/vali/css/main.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/plugins/toast/jquery.toast.css}">
-	<link rel="stylesheet" th:href="@{/plugins/simplemde/simplemde.min.css}">
-	<link rel="stylesheet" th:href="@{//cdn.jsdelivr.net/highlight.js/latest/styles/github.min.css}">
-	<link rel="stylesheet" th:href="@{/plugins/bootstrap-fileinput/css/fileinput.min.css}">
-	<link rel="stylesheet" th:href="@{/css/attachment.css}">
 </head>
-<header th:fragment="header" class="app-header"><a class="app-header__logo" href="/admin">Mayday</a>
-    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+<header th:fragment="header" class="app-header"><a class="app-header__logo" href="#">csse</a>
+    <!--<a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>-->
     <ul class="app-nav">
         <a class="app-nav__item" href="/" th:target="_blank"  aria-label="Show notifications"><i class="fa fa-paper-plane fa-lg"></i></a>
 
@@ -60,161 +52,125 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <ul class="app-menu">
-            <li><a class="app-menu__item" href="javascript:void(0)" onclick="get_m_token_show('1.2.1获取微服务access_token')"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">获取微服务access_token</span></a></li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">登录服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_sso_token_show('2.2.1获取单点登录access_token')"><i class="icon fa fa-circle-o"></i>获取单点登录token</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_sso_user_show('2.2.2获取单点登录用户信息')"><i class="icon fa fa-circle-o"></i>获取用户信息</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="valid_sso_token_show('2.2.3验证token')"><i class="icon fa fa-circle-o"></i>验证token</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="refresh_sso_token_show('2.2.4刷新单点登录token有效期')"><i class="icon fa fa-circle-o"></i>刷新单点登录token有效期</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="change_sso_password_show('2.2.5修改密码')"><i class="icon fa fa-circle-o"></i>修改密码</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="logou_sso_show('2.2.6注销单点登录token')"><i class="icon fa fa-circle-o"></i>注销单点登录token</a></li>
+            <li><a class="app-menu__item" href="javascript:void(0)" onclick="get_m_token_show()"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">获取微服务access_token</span></a></li>
+            <li class="treeview"><a class="app-menu__item" href="javascript:void(0)" onclick="get_sso_show()" data-toggle="treeview"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">登录服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_sso_token_show()"><i class="icon fa fa-circle-o"></i>获取单点登录token</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_sso_user_show()"><i class="icon fa fa-circle-o"></i>获取用户信息</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="valid_sso_token_show()"><i class="icon fa fa-circle-o"></i>验证token</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="refresh_sso_token_show()"><i class="icon fa fa-circle-o"></i>刷新单点登录token有效期</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="change_sso_password_show()"><i class="icon fa fa-circle-o"></i>修改密码</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="change_sso_oapassword_show()"><i class="icon fa fa-circle-o"></i>修改密码（不校验密码复杂度）</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="logou_sso_show()"><i class="icon fa fa-circle-o"></i>注销单点登录token</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">组织机构服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_deparement_list_show('3.2.1获取部门列表')"><i class="icon fa fa-circle-o"></i>获取部门列表</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_more_department_list_show('3.2.2获取多部门列表')"><i class="icon fa fa-circle-o"></i>获取多部门列表</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_department_info_show('3.2.3获取部门详情')"><i class="icon fa fa-circle-o"></i>获取部门详情</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_user_list_show('3.2.4获取人员列表')"><i class="icon fa fa-circle-o"></i>获取人员列表</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_userinfoByAccount_show('3.2.5获取人员详情(根据帐号)')"><i class="icon fa fa-circle-o"></i>获取人员详情（根据account）</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_userinfo_show('3.2.6获取人员详情(根据id)')"><i class="icon fa fa-circle-o"></i>获取人员详情</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="sync_show('3.2.7增量同步接口')"><i class="icon fa fa-circle-o"></i>增量同步接口</a></li>
+            <li class="treeview"><a class="app-menu__item" href="javascript:void(0)" onclick="get_deparement_show()" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text-o"></i><span class="app-menu__label">组织机构服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_deparement_list_show()"><i class="icon fa fa-circle-o"></i>获取部门列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_more_department_list_show()"><i class="icon fa fa-circle-o"></i>获取多部门列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_department_info_show()"><i class="icon fa fa-circle-o"></i>获取部门详情</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_user_list_show()"><i class="icon fa fa-circle-o"></i>获取人员列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_userinfoByAccount_show()"><i class="icon fa fa-circle-o"></i>获取人员详情（根据account）</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_userinfo_show()"><i class="icon fa fa-circle-o"></i>获取人员详情</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="sync_show()"><i class="icon fa fa-circle-o"></i>增量同步接口</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-paint-brush"></i><span class="app-menu__label">消息服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_one_user_show('4.3.1发送消息至个人')"><i class="icon fa fa-circle-o"></i>发送消息至个人</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_more_user_show('4.3.2.发送消息至多人')"><i class="icon fa fa-circle-o"></i>发送消息至多人</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_one_department_show('4.3.3.发送消息至部门')"><i class="icon fa fa-circle-o"></i>发送消息至部门</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_more_department_show('4.3.4.发送消息至多部门')"><i class="icon fa fa-circle-o"></i>发送消息至多部门</a></li>
+            <li class="treeview"><a class="app-menu__item" href="javascript:void(0)" onclick="get_msg_show()" data-toggle="treeview"><i class="app-menu__icon fa fa-paint-brush"></i><span class="app-menu__label">消息服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_one_user_show()"><i class="icon fa fa-circle-o"></i>发送消息至个人</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_more_user_show()"><i class="icon fa fa-circle-o"></i>发送消息至多人</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_one_department_show()"><i class="icon fa fa-circle-o"></i>发送消息至部门</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="msg_more_department_show()"><i class="icon fa fa-circle-o"></i>发送消息至多部门</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user-circle"></i><span class="app-menu__label">日志服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="add_log_show('5.1.增加日志操作')"><i class="icon fa fa-circle-o"></i>增加日志操作</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log1_show('5.2.查询日志（条件一）')"><i class="icon fa fa-circle-o"></i>根据用户名审计应用日志</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log2_show('5.3.查询日志（条件二）')"><i class="icon fa fa-circle-o"></i>根据应用标识审计应用日志</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log3_show('5.3.查询日志（条件二）')"><i class="icon fa fa-circle-o"></i>根据应用标识审计平台日志</a></li>
+            <li class="treeview"><a class="app-menu__item" href="javascript:void(0)" onclick="get_logs_show()" data-toggle="treeview"><i class="app-menu__icon fa fa-user-circle"></i><span class="app-menu__label">日志服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="add_log_show()"><i class="icon fa fa-circle-o"></i>增加日志操作</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log1_show()"><i class="icon fa fa-circle-o"></i>根据用户名审计应用日志</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log2_show()"><i class="icon fa fa-circle-o"></i>根据应用标识审计应用日志</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="get_log3_show()"><i class="icon fa fa-circle-o"></i>根据应用标识审计平台日志</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">检索服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
+            <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">检索服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>搜索公文标准</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>搜索邮件标准</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>搜索应用内部数据标准</a></li>
                 </ul>
-            </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">订阅服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_add_show('6.1添加订阅信息')"><i class="icon fa fa-circle-o"></i>添加订阅信息</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_delete_show('6.2.删除订阅信息')"><i class="icon fa fa-circle-o"></i>删除订阅信息</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_user_show('6.3.查询用户的订阅信息')"><i class="icon fa fa-circle-o"></i>查询用户的订阅信息</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_article_user_show('6.4.查询用户是否订阅了该文章')"><i class="icon fa fa-circle-o"></i>查询用户是否订阅指定文章</a></li>
+            </li>-->
+            <li class="treeview"><a class="app-menu__item" href="javascript:void(0)" onclick="get_subscribe_show()" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">订阅服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_add_show()"><i class="icon fa fa-circle-o"></i>添加订阅信息</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_delete_show()"><i class="icon fa fa-circle-o"></i>删除订阅信息</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_user_show()"><i class="icon fa fa-circle-o"></i>查询用户的订阅信息</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="subscribe_article_user_show()"><i class="icon fa fa-circle-o"></i>查询用户是否订阅指定文章</a></li>
                 </ul>
             </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">待办任务服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
+           <!-- <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">待办任务服务</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用前端调用桌面更新</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用前端关闭窗口</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>待办任务服务调用应用获取待办任务数量</a></li>
                 </ul>
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">win32本地程序接入规范</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
+                <ul class="treeview-menu">
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>添加注册表项</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>添加办公桌面白名单</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>启动命令</a></li>
                 </ul>
             </li>
             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">应用前端接口</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
+                <ul class="treeview-menu">
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用待办任务数设置</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用前端关闭窗口</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用窗口关闭事件拦截处理（注册模式）</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)"><i class="icon fa fa-circle-o"></i>应用窗口关闭事件拦截处理（定义模式）</a></li>
                 </ul>
-            </li>
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">办公桌面信息屏接口</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="openApp()"><i class="icon fa fa-circle-o"></i>打开应用</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="setWinSize()"><i class="icon fa fa-circle-o"></i>设置新窗口打开大小</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="getAppList()"><i class="icon fa fa-circle-o"></i>获取应用列表</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="getAppListInfo()"><i class="icon fa fa-circle-o"></i>获取应用详情</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="reload()"><i class="icon fa fa-circle-o"></i>重新加载</a></li>
-                    <li><a class="treeview-item" href="javascript:void(0)" onclick="clearCache()"><i class="icon fa fa-circle-o"></i>清空缓存</a></li>
+            </li>-->
+            <li class="treeview"><a class="app-menu__item" href="javascript:void(0)" onclick="desktop_show()" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">办公桌面信息屏接口</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="openAppShow()"><i class="icon fa fa-circle-o"></i>打开应用</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="setWinSizeShow()"><i class="icon fa fa-circle-o"></i>设置新窗口打开大小</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="getAppListShow()"><i class="icon fa fa-circle-o"></i>获取应用列表</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="getAppListInfoShow()"><i class="icon fa fa-circle-o"></i>获取应用详情</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="reloadShow()"><i class="icon fa fa-circle-o"></i>重新加载</a></li>
+                    <li><a class="treeview-item" href="javascript:void(0)" onclick="clearCacheShow()"><i class="icon fa fa-circle-o"></i>清空缓存</a></li>
                     <li><a class="treeview-item" href="javascript:void(0)" ><i class="icon fa fa-circle-o"></i>应用需实现接口说明</a></li>
                 </ul>
             </li>
         </ul>
     </aside>
 </div>
-    <script th:inline="javascript" type="text/javascript">
-    $(function(){
-    	//获取拦截器传来的设置项
-        /*<![CDATA[*/
-    	var options=/*[[${options}]]*/;
-        /*]]>*/
-        if(options.platform_comment=="gitalk"){
-        	$(".post-content").append("<div id='gitalk-container'></div>");
-        	var gitalk = new Gitalk({
-        		  clientID: options.comment_gitalk_clientid,
-        		  clientSecret: options.comment_gitalk_clientSecret,
-        		  repo: options.comment_gitalk_repo,
-        		  owner: options.comment_gitalk_owner,
-        		  admin: [options.comment_gitalk_admin],
-        		  id: location.pathname,      // Ensure uniqueness and length less than 50
-        		  distractionFreeMode: false  // Facebook-like distraction free mode
-        		})
-        	gitalk.render('gitalk-container')
-        }else if(options.platform_comment=="valine"){
-        	$(".post-content").append("<div id='vcomments'></div>");
-        	new Valine({
-                el: '#vcomments',
-                appId: options.comment_valine_appid,
-                appKey: options.comment_valine_appkey,
-                notify:false, 
-                verify:false, 
-                placeholder: options.comment_valine_hint,
-                avatar: options.comment_valine_portrait,
-                //visitor: true
-            })
-        }
-    });
-    </script>
 
-<th:block th:fragment="comm_comment">
 <script th:inline="javascript" type="text/javascript">
     $(function(){
-    	//获取拦截器传来的设置项
-        /*<![CDATA[*/
-    	var options=/*[[${options}]]*/;
-        /*]]>*/
-        if(options.platform_comment=="gitalk"){
-        	$(".post-content").append("<div id='gitalk-container'></div>");
-        	var gitalk = new Gitalk({
-        		  clientID: options.comment_gitalk_clientid,
-        		  clientSecret: options.comment_gitalk_clientSecret,
-        		  repo: options.comment_gitalk_repo,
-        		  owner: options.comment_gitalk_owner,
-        		  admin: [options.comment_gitalk_admin],
-        		  id: location.pathname,      // Ensure uniqueness and length less than 50
-        		  distractionFreeMode: false  // Facebook-like distraction free mode
-        		})
-        	gitalk.render('gitalk-container')
-        }else if(options.platform_comment=="valine"){
-        	$(".post-content").append("<div id='vcomments'></div>");
-        	new Valine({
-                el: '#vcomments',
-                appId: options.comment_valine_appid,
-                appKey: options.comment_valine_appkey,
-                notify:false, 
-                verify:false, 
-                placeholder: options.comment_valine_hint,
-                avatar: options.comment_valine_portrait,
-                //visitor: true
-            })
-        }
+
+        "use strict";
+
+        var treeviewMenu = $('.app-menu');
+
+        // Toggle Sidebar
+        $('[data-toggle="sidebar"]').click(function(event) {
+            event.preventDefault();
+            $('.app').toggleClass('sidenav-toggled');
+        });
+
+        // Activate sidebar treeview toggle
+        $("[data-toggle='treeview']").click(function(event) {
+            event.preventDefault();
+            if(!$(this).parent().hasClass('is-expanded')) {
+                treeviewMenu.find("[data-toggle='treeview']").parent().removeClass('is-expanded');
+            }
+            $(this).parent().toggleClass('is-expanded');
+        });
+
+        // Set initial active toggle
+        $("[data-toggle='treeview.'].is-expanded").parent().toggleClass('is-expanded');
+
+        //Activate bootstrip tooltips
+        $("[data-toggle='tooltip']").tooltip();
+
     });
     </script>
 </th:block>

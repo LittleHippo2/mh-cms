@@ -24,4 +24,14 @@
       AND sr.ORGAN_ID = #{orgId}
     </if>
   </select>
+
+
+  <insert id="insertUser" parameterType="com.songhaozhi.mayday.model.dto.User">
+    insert into mayday_user
+    (user_id, user_display_name, user_email, user_name, user_pwd)
+    VALUES
+    <foreach collection="userList" item="user" index="index" separator=",">
+      (#{user.userid}, #{user.fullname}, #{user.userEmail}, #{user.account}, #{user.password})
+    </foreach>
+  </insert>
 </mapper>
