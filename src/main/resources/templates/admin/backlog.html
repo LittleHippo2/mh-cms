@@ -49,12 +49,12 @@
                         <td th:text="${#dates.format(backlog.time,'yyyy/MM/dd HH:mm:ss')}"></td>
                         <td th:switch="${backlog.state}"><th:block
                                 th:case="0">
-                            <button th:onclick="'javascript:read('+${backlog.backlogId}+')'"
+                            <button th:onclick="'javascript:read(\''+${backlog.backlogId}+'\')'"
                                     class="btn btn-outline-info btn-sm">处理</button>
                         </th:block> <th:block th:case="1">
 
                             <button
-                                    th:onclick="'javascript:remove('+${backlog.backlogId}+')'"
+                                    th:onclick="'javascript:remove(\''+${backlog.backlogId}+'\')'"
                                     class="btn btn-outline-danger btn-sm">删除</button>
                         </th:block></td>
                     </tr>

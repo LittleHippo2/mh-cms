@@ -36,8 +36,9 @@ public class MessageController extends BaseController {
         try{
             jsonObject = JSONObject.parseObject(content);
             inParam.put("content",jsonObject);
-            PersonUrl = PersonUrl+userid;
-            String request = HttpUtil.post(PersonUrl,inParam,3000,3000);
+            String url = PersonUrl;
+            url = url+userid;
+            String request = HttpUtil.post(url,inParam,3000,3000);
             log.info("result:"+request);
             result = JSONObject.parseObject(request);
         }catch (Exception e){
@@ -57,8 +58,9 @@ public class MessageController extends BaseController {
         try{
             jsonObject = JSONObject.parseObject(content);
             inParam.put("content",jsonObject);
-            departmentUrl = departmentUrl+departmentid;
-            String request = HttpUtil.post(departmentUrl,inParam,3000,3000);
+            String url = departmentUrl;
+            url = url+departmentid;
+            String request = HttpUtil.post(url,inParam,3000,3000);
             log.info("result:"+request);
             result = JSONObject.parseObject(request);
         }catch (Exception e){

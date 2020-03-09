@@ -86,7 +86,7 @@
 										th:text="${tag.tagName}"></option>
 								</optgroup>
 							</select>
-							
+
 							<span class="bb" th:each="a:${tagsIds}" th:text="${a}"></span>
 						</div>
 					</div>
@@ -126,11 +126,11 @@
 		src="https://cdn.jsdelivr.net/highlight.js/latest/highlight.min.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-	<script src="/plugins/pinyinjs/pinyin_dict_notone.js"></script>	
-	<script src="/plugins/pinyinjs/pinyinUtil.js"></script>	
+	<script src="/plugins/pinyinjs/pinyin_dict_notone.js"></script>
+	<script src="/plugins/pinyinjs/pinyinUtil.js"></script>
 	<script src="/plugins/inline-attachment/codemirror-4.inline-attachment.min.js"></script>
 	<script type="text/javascript">
-   var simplemde = new SimpleMDE({ 
+   var simplemde = new SimpleMDE({
 	   element: document.getElementById("articleMd"),
 	   //如果设置为true，则强制下载Font Awesome（用于图标）。如果设置为false，则阻止下载。默认为undefined，将智能检查是否已包含Font Awesome，然后相应下载。
 	   autoDownloadFontAwesome:false,
@@ -195,8 +195,8 @@
 					  $("#articleUrl").val(data.msg);
 				  }
 			   });
-		   });  
-		 
+		   });
+
 	    $('#categorySelect').select2();
 		$('#tagSelect').select2();
 		//设置默认选择
@@ -211,7 +211,7 @@
 				   $('#categorySelect').val(data.categorysIds).trigger('change');
 				   $('#tagSelect').val(data.tagsIds).trigger('change');
 			   }
-		   })  
+		   })
    });
  	//选择略缩图
 	function openChoice(id){
@@ -255,7 +255,16 @@
  	 	                         loader: true,
  	 	                         loaderBg: '#ffffff',
  	 	                         afterHidden: function () {
- 	 	                        	 window.location.href = "/admin/article"; 
+									 $.ajax({
+										 url : "/backlog/count",
+										 type : "post",
+										 dataType : "html",
+										 success : function(data) {
+										 	console.log(data)
+											 window.__set_todo_count__(data);
+										 }
+									 });
+ 	 	                        	 window.location.href = "/admin/article";
  	 	                         }
  	 	                     });
  						}else{
