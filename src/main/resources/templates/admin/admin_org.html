@@ -25,10 +25,11 @@
                     <select id="orglist">
                         <option id="请选择">请选择机构</option>
                     </select>
-
                 </div>
 
                 <div class="table-responsive col-md-8">
+                    <label for="meeting">开始时间：</label><input id="meeting" type="date"  value=""/>
+                    <button value="开始同步" onclick="Synchronization()">同步</button>
                     <table class="table table-striped table-bordered table-hover"
                            id="article_table">
                         <thead>
@@ -56,8 +57,18 @@
 </html>
 <script type="text/javascript">
 
+    var token;
+
     $(function(){
         getOrgList();
+
+        $.ajax({
+            url:"/getToken",
+            data:{client_id:"legacycpk.csse.cms",client_secret:"test123"},
+            success:function(data){
+               token =  data.access_token
+            }
+        })
 
         $("#orglist").change(function(){
             var value = this.value;
@@ -146,6 +157,21 @@
         });
     }
 
-    //分页
+
+    function Synchronization(){
+       var time =  $("#meeting").val();
+        console.log(time);
+        var d = new Date(time);
+        var timestamp =d.getTime(d);
+        console.log(timestamp)
+        $.ajax({
+            url:"/IncrSyn",
+            data:{access_token:token,starttime:timestamp},
+            success:function(data){
+                console.log(data);
+            }
+        })
+    }
+
 
 </script>

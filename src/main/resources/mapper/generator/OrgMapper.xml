@@ -29,4 +29,23 @@
       AND fatherid = #{parentId}
     </if>
   </select>
+
+  <insert id="insertOrgData" parameterType="com.songhaozhi.mayday.model.dto.Org">
+  INSERT into GXZCC_SYS_ORGAN
+  (`ORGANID`, `ORGANNAME`, `FATHERID`, `ORDERID`,`DN`, `ISDELETE`, `CODE`, `PATH`, `ORGUUID`, `TYPE`, `TIMESTAMP`)
+  VALUES
+    <foreach collection="list" item="org" index="index" separator=",">
+      (#{org.organId},
+      #{org.organName},
+      #{org.fatherId},
+      #{org.orderId},
+      #{org.dn},
+      #{org.isDelete},
+      #{org.code},
+      #{org.path},
+      #{org.orgUuid},
+      #{org.type},
+      #{org.timesTamp})
+    </foreach>
+  </insert>
 </mapper>

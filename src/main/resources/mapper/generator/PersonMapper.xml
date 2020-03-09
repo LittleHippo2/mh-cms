@@ -12,7 +12,6 @@
   <if test="orgId != null and orgId != '' ">
    AND sr.ORGAN_ID = #{orgId}
   </if>
-
     limit #{startIndex}, 10
   </select>
 
@@ -28,10 +27,37 @@
 
   <insert id="insertUser" parameterType="com.songhaozhi.mayday.model.dto.User">
     insert into mayday_user
-    (user_id, user_display_name, user_email, user_name, user_pwd)
+      (user_id, user_display_name, user_email, user_name, user_pwd)
     VALUES
     <foreach collection="userList" item="user" index="index" separator=",">
       (#{user.userid}, #{user.fullname}, #{user.userEmail}, #{user.account}, #{user.password})
+    </foreach>
+  </insert>
+
+
+  <insert id="insertRelation" parameterType="com.songhaozhi.mayday.model.dto.Relation">
+  INSERT INTO GXZCC_SYS_ORGAN_USER_RELATION
+    (ID, USER_ID, ORGAN_ID, ROLE_ID, ORDER_ID)
+  VALUES
+  <foreach collection="list" item="relation" index="index" separator=",">
+    (#{relation.id},#{relation.userId}, #{relation.organId}, #{relation.roleId},#{relation.orderId} )
+  </foreach>
+  </insert>
+
+  <insert id="insertGxzccUser" parameterType="com.songhaozhi.mayday.model.dto.JsonUser">
+    INSERT INTO GXZCC_SYS_USER
+    (USERID, FULLNAME, ACCOUNT, `PASSWORD`,SEX,
+    ORGANID,ORDERID,DN,ISDELETE,CA,
+    ISMANAGER,TOKENID,SPID,SN,IP,
+    STARTDATE,ENDDATE,USERUUID,USEREMAIL,SECLEVEL,
+    FAILEDLOGINCOUNT,EDITPWDTIME,MOBILE,`TIMESTAMP`,TYPE)
+    VALUES
+    <foreach collection="list" item="user" index="index" separator=",">
+      (#{user.userid},#{user.fullname},#{user.account},#{user.password},#{user.sex},
+      #{user.organId},#{user.orderId},#{user.dn},#{user.isDelete},#{user.ca},
+      #{user.isManager},#{user.tokenId},#{user.spId},#{user.sn},#{user.ip},
+      #{user.startDate},#{user.endDate},#{user.userUuid},#{user.userEmail},#{user.secLevel},
+      #{user.failedLoginCount},#{user.editPwdTime},#{user.mobile},#{user.timestamp},#{user.type})
     </foreach>
   </insert>
 </mapper>

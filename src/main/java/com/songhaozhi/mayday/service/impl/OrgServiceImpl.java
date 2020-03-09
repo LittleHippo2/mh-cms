@@ -2,6 +2,7 @@ package com.songhaozhi.mayday.service.impl;
 
 import com.songhaozhi.mayday.mapper.generator.OrgMapper;
 import com.songhaozhi.mayday.model.dto.Org;
+import com.songhaozhi.mayday.model.dto.Relation;
 import com.songhaozhi.mayday.service.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,11 @@ public class OrgServiceImpl implements OrgService {
     @Override
     public Integer getOrgList2Size(String fatherId) {
         return orgMapper.getOrgList2Size(fatherId);
+    }
+
+    @Override
+    public Integer insertOrgData(List<Org> list) {
+        return orgMapper.insertOrgData(list);
     }
 
 

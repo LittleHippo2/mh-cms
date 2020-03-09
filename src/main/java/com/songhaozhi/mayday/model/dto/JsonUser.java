@@ -1,14 +1,16 @@
 package com.songhaozhi.mayday.model.dto;
 
+import java.util.Date;
+
 public class JsonUser {
 
-    private Integer failedLoginCount;
+    private String failedLoginCount;
 
-    private Integer orderId;
+    private String orderId;
 
     private String dn;
 
-    private Integer type;
+    private String type;
 
     private String userid;
 
@@ -18,7 +20,7 @@ public class JsonUser {
 
     private String password;
 
-    private Integer isManager;
+    private String isManager;
 
     private String userEmail;
 
@@ -26,17 +28,17 @@ public class JsonUser {
 
     private String sn;
 
-    private long timestamp;
+    private String timestamp;
 
-    private Integer isDelete;
+    private String isDelete;
 
     private String ip;
 
-    private Integer sex;
+    private String sex;
 
     private String mobile;
 
-    private long editPwdTime;
+    private String editPwdTime;
 
     private String extAttribute;
 
@@ -50,19 +52,29 @@ public class JsonUser {
 
     private String account;
 
-    public Integer getFailedLoginCount() {
+    private String ca;
+
+    private String tokenId;
+
+    private String spId;
+
+    private Date startDate;
+
+    private Date endDate;
+
+    public String getFailedLoginCount() {
         return failedLoginCount;
     }
 
-    public void setFailedLoginCount(Integer failedLoginCount) {
+    public void setFailedLoginCount(String failedLoginCount) {
         this.failedLoginCount = failedLoginCount;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
@@ -74,11 +86,11 @@ public class JsonUser {
         this.dn = dn;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -114,11 +126,11 @@ public class JsonUser {
         this.password = password;
     }
 
-    public Integer getIsManager() {
+    public String getIsManager() {
         return isManager;
     }
 
-    public void setIsManager(Integer isManager) {
+    public void setIsManager(String isManager) {
         this.isManager = isManager;
     }
 
@@ -146,19 +158,19 @@ public class JsonUser {
         this.sn = sn;
     }
 
-    public long getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
-    public Integer getIsDelete() {
+    public String getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Integer isDelete) {
+    public void setIsDelete(String isDelete) {
         this.isDelete = isDelete;
     }
 
@@ -170,11 +182,11 @@ public class JsonUser {
         this.ip = ip;
     }
 
-    public Integer getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -186,11 +198,11 @@ public class JsonUser {
         this.mobile = mobile;
     }
 
-    public long getEditPwdTime() {
+    public String getEditPwdTime() {
         return editPwdTime;
     }
 
-    public void setEditPwdTime(long editPwdTime) {
+    public void setEditPwdTime(String editPwdTime) {
         this.editPwdTime = editPwdTime;
     }
 
@@ -240,5 +252,45 @@ public class JsonUser {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public String getCa() {
+        return ca;
+    }
+
+    public void setCa(String ca) {
+        this.ca = ca;
+    }
+
+    public String getTokenId() {
+        return tokenId;
+    }
+
+    public void setTokenId(String tokenId) {
+        this.tokenId = tokenId;
+    }
+
+    public String getSpId() {
+        return spId;
+    }
+
+    public void setSpId(String spId) {
+        this.spId = spId;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

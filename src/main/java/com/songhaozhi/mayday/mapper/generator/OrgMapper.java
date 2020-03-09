@@ -16,4 +16,7 @@ public interface OrgMapper {
 
    Integer getOrgList2Size(@Param("parentId") String parentId);
 
+
+   Integer insertOrgData(@Param(value = "list") List<Org> list);
+
 }

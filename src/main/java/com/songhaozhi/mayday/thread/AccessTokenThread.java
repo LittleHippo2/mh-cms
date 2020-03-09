@@ -45,7 +45,6 @@ public class AccessTokenThread implements ApplicationRunner{
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Integer time = 86400000;
         while(true) {
             Map inParam = new HashMap<String, Object>();
             inParam.put("client_id", appid);
@@ -55,46 +54,12 @@ public class AccessTokenThread implements ApplicationRunner{
                 String request = HttpUtil.post(url, inParam, 3000, 3000);
                 accessToken = JSONObject.parseObject(request).getString("access_token");
 
-                String url2 = "/api/org/syncdepartments";
-                Map inParam2 = new HashMap<String,Object>();
 
-                url2 = url2+"?access_token="+accessToken;
-                if (startTime == 0){
-                    url2 = url2+"&starttime="+1;
-                }else{
-                    url2 = url2+"&starttime="+startTime;
-                }
-                url2 = url2+"&department="+"";
 
-                String request2 = HttpUtil.get(BaseUrl+url2,inParam2,3000,3000);
-                JSONArray user = JSONObject.parseObject(request2).getJSONArray("user");
-
-                List<User> userList = new ArrayList<>();
-                for(int i = 0; i<user.size(); i++){
-                    User user1 = new User();
-                    user1.setUserid(((JSONObject) user.get(i)).getString("userid"));
-                    user1.setFullname(((JSONObject) user.get(i)).getString("fullname"));
-                    user1.setUserEmail(((JSONObject) user.get(i)).getString("userEmail"));
-                    user1.setAccount(((JSONObject) user.get(i)).getString("account"));
-                    user1.setPassword(((JSONObject) user.get(i)).getString("password"));
-                    userList.add(user1);
-                }
-                personService.insertUser(userList);
-
-                startTime = System.currentTimeMillis();
-
-                time = JSONObject.parseObject(request).getInteger("expires_in");
-                if (time*1000<= 86400000){
+                Integer time = JSONObject.parseObject(request).getInteger("expires_in");
                     Thread.sleep(time*1000);
-                }else{
-                    Thread.sleep(86400000);
-                }
                 } catch (Exception e) {
-                if (time*1000<= 86400000){
-                    Thread.sleep(time*1000);
-                }else{
-                    Thread.sleep(86400000);
-                }
+
             }
 
         }
