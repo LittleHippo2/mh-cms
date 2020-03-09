@@ -510,7 +510,7 @@ function setWinSizeShow(){ //设置新窗口打开大小
 		+'<tr><td><label>请输入新窗口宽：</label></td>'
 		+'<td><input  id="wide" type="text"   style="width:500px;"  value="" /></td></tr>'
 		+'<tr><td><label>请输入新窗口高：</label></td>'
-		+'<td><input  id="height" type="text"   style="width:500px;"  value="" /></td></tr></table>';
+		+'<td><input  id="hight" type="text"   style="width:500px;"  value="" /></td></tr></table>';
 
 }
 function getAppListShow(){ //获取应用列表

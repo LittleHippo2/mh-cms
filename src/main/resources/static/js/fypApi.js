@@ -8,9 +8,11 @@ function openApp() {
     var redirect = $("#redirect").val();
 
     if (typeof Desktop == "undefined") {
-        _service_._openApp_(appId, redirect);
+        console.log("Desktop undefined");
+        _service_._openApp_(appid, redirect);
     } else {
-        Desktop.__openApp__(appId, redirect);
+        console.log("openApp");
+        Desktop.__openApp__(appid, redirect);
     }
 }
 
@@ -21,10 +23,13 @@ function openApp() {
  */
 function setWinSize() {
     var wide = $("#wide").val();
-    var wide = $("#hight").val();
+    var hight = $("#hight").val();
+    console.log("wide:"+wide+" hight:"+hight);
     if (typeof Desktop == "undefined") {
+        console.log("Desktop undefined");
         _service_._setLinkWindowSize_(wide, hight);
     } else {
+        console.log("__setLinkWindowSize__");
         Desktop.__setLinkWindowSize__(wide, hight);
     }
 }
@@ -35,6 +40,7 @@ function setWinSize() {
  */
 function getAppList() {
     if (typeof Desktop == "undefined") {
+        console.log('Desktop undefined');
        var appids = _service_._getAppList_();
         __onGetAppList__(appids);
     } else {
@@ -56,6 +62,7 @@ function getAppList() {
  */
 function getAppListInfo(callback) {
     if (typeof Desktop == "undefined") {
+        console.log('Desktop undefined');
        var appInfoList =  _service_._getAppInfoList_();
         __onGetAppInfoList__(appInfoList);
     } else {
@@ -83,6 +90,7 @@ function reload() {
         bypassCache = 'false';
     }
     if (typeof Desktop == "undefined") {
+        console.log('Desktop undefined');
         __reload__(bypassCache)
     } else {
         Desktop.__reload__(bypassCache);
@@ -103,6 +111,7 @@ function clearCache(bypassCache) {
         bypassCookie = 'false';
     }
     if (typeof Desktop == "undefined") {
+        console.log('Desktop undefined');
         __clearCache__(bypassCookie);
     } else {
         Desktop.__clearCache__(bypassCookie);
