@@ -45,6 +45,8 @@ message :
 token :
   url : http://172.16.5.200:10005/api/uaa/oauth/token
   ssoUrl : http://172.16.5.200:10005/api/sso/authen
+  appId : legacycpk.csse.cms
+  secret : test123
 log :
   add : http://172.16.5.200:10005/api/log/addlog
   get : http://172.16.5.200:10005/api/log/

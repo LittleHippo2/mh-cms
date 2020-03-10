@@ -158,19 +158,35 @@
     }
 
 
-    function Synchronization(){
-       var time =  $("#meeting").val();
+    function Synchronization() {
+        var time = $("#meeting").val();
         console.log(time);
-        var d = new Date(time);
-        var timestamp =d.getTime(d);
-        console.log(timestamp)
-        $.ajax({
-            url:"/IncrSyn",
-            data:{access_token:token,starttime:timestamp},
-            success:function(data){
-                console.log(data);
-            }
-        })
+        if (time) {
+            var d = new Date(time);
+            var timestamp = d.getTime(d);
+            $.ajax({
+                url: "/IncrSyn",
+                data: {access_token: token, starttime: timestamp},
+                success: function (data) {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        if (data.org && data.user) {
+                            alert("没有可以同步的组织机构信息和人员信息");
+                        } else if (data.org) {
+                            alert(data.org);
+                        } else if (data.user) {
+                            alert(data.user);
+                        }else{
+                            alert("同步完成");
+                        }
+                    }
+                }
+            })
+        }else{
+            alert("请输入正确时间");
+        }
+
     }
 
 
