@@ -380,7 +380,17 @@ public class ArticleController extends BaseController {
         display.put("system", true);
         display.put("notification", true);
         display.put("msgbox", true);
+
+        // START through send message to update the todo_count.
+        String [] operations = new String[1];
+        Map<String, String> todoCount= new HashMap<String,String>();
+        todoCount.put("type","update_todo_count");
+        todoCount.put("value","0"); //select todo_count from db.table where user_id is current user.
+        operations[0] = JSONObject.toJSONString(todoCount);
+        //END  through send message to update the todo_count.
+
         content.put("display", display);
+        content.put("operations",operations);
         JSONObject result = messageController.sendOnce(token, userId, content.toString());
         log.info(result.toString());
     }

@@ -140,6 +140,7 @@ public class HttpUtil {
             conn.setUseCaches(false);
             // 设定请求的方法为"POST",默认是GET
             conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             if (!params.isEmpty()) {
                 // 此处getOutputStream会隐含的进行connect()
                 outputStreamWriter = new OutputStreamWriter(conn.getOutputStream(), "utf-8");

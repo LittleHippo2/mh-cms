@@ -97,6 +97,10 @@ public class AdminController extends BaseController {
 	 */
 	@RequestMapping(value = "/login")
 	public String login(HttpSession session, Model model, String access_token) throws Exception {
+		User userSession = (User) session.getAttribute(MaydayConst.USER_SESSION_KEY);
+		if (userSession != null) {
+			return "redirect:/admin";
+		}
 		if (access_token != null && checkSso(access_token)) {
 			JSONObject js = getSSoInfo(access_token);
 			// 修改最后登录时间
@@ -138,15 +142,15 @@ public class AdminController extends BaseController {
 			// 已注册用户
 			User users = userService.findUser();
 			// 判断账户是否被禁用十分钟
-			Date date = DateUtil.date();
-			if (users.getLoginLastTime() != null) {
-				date = users.getLoginLastTime();
-			}
-			// 计算两个日期之间的时间差
-			long between = DateUtil.between(date, DateUtil.date(), DateUnit.MINUTE);
-			if (StrUtil.equals(users.getLoginEnable(), flag) && (between < inhibitTime)) {
-				return new JsonResult(false, "账户被禁止登录10分钟，请稍后重试");
-			}
+//			Date date = DateUtil.date();
+//			if (users.getLoginLastTime() != null) {
+//				date = users.getLoginLastTime();
+//			}
+//			// 计算两个日期之间的时间差
+//			long between = DateUtil.between(date, DateUtil.date(), DateUnit.MINUTE);
+//			if (StrUtil.equals(users.getLoginEnable(), flag) && (between < inhibitTime)) {
+//				return new JsonResult(false, "账户被禁止登录10分钟，请稍后重试");
+//			}
 			// 验证用户名密码
 			User user = userService.getByNameAndPwd(userName, SecureUtil.md5(userPwd));
 			// 修改最后登录时间
