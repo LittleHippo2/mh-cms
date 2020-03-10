@@ -19,4 +19,5 @@ public interface OrgMapper {
 
    Integer insertOrgData(@Param(value = "list") List<Org> list);
 
+    List<String> getAllDepartsFatherId();
 }

@@ -103,7 +103,15 @@ public class OrgController {
 
         return new ResponData(orgService.getOrgList2(fatherId, fromIndex, toIndex), orgService.getOrgList2Size(fatherId));
     }
+    @RequestMapping("/getOrgJsonTree")
+    @ResponseBody
+    public ResponData getOrgJsonTree(){
 
+       String json = orgService.getOrgJsonTree();
+
+        //return new ResponData(orgService.getOrgList2(fatherId, fromIndex, toIndex), orgService.getOrgList2Size(fatherId));
+        return new ResponData(json,0);
+    }
 
 
 }

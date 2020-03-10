@@ -48,4 +48,7 @@
       #{org.timesTamp})
     </foreach>
   </insert>
+  <select id="getAllDepartsFatherId" resultType="java.lang.String">
+  select distinct(fatherId) from GXZCC_SYS_ORGAN
+  </select>
 </mapper>
