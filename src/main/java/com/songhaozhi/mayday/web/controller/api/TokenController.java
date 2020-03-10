@@ -121,7 +121,7 @@ public class TokenController extends BaseController {
             List<Relation> relationList = null;
             List<JsonUser> jsonUserList = null;
             if(org.size() ==0){
-                result.put("org", "没有可以同步的组织机构信息");
+                result.put("orgMessage", "没有可以同步的组织机构信息");
             }else{
                 orgList = new ArrayList<>();
                 for(int i= 0; i<org.size(); i++){
@@ -146,7 +146,7 @@ public class TokenController extends BaseController {
             }
 
             if(user.size() == 0){
-                result.put("user","没有可以同步的人员信息");
+                result.put("userMessage","没有可以同步的人员信息");
             }else{
                 //同步人员信息
                 userList = new ArrayList<>();

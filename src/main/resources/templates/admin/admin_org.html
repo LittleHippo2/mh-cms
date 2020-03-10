@@ -163,24 +163,25 @@
         console.log(time);
         if (time) {
             var d = new Date(time);
-            var timestamp = d.getTime(d);
+            var timestamp = d.getTime(d)/1000;
+            console.log(timestamp);
             $.ajax({
                 url: "/IncrSyn",
                 data: {access_token: token, starttime: timestamp},
                 success: function (data) {
-                    if (data.error) {
-                        alert(data.error);
-                    } else {
-                        if (data.org && data.user) {
+                        console.log(data);
+                        if (data.orgMessage && data.userMessage) {
                             alert("没有可以同步的组织机构信息和人员信息");
-                        } else if (data.org) {
-                            alert(data.org);
-                        } else if (data.user) {
-                            alert(data.user);
+                        } else if (data.orgMessage) {
+                            alert(data.orgMessage);
+                        } else if (data.userMessage) {
+                            alert(data.userMessage);
                         }else{
                             alert("同步完成");
                         }
-                    }
+                },
+                error:function(data){
+                    alert("返回的同步数据和本地数据库数据有重复，请排查，或者重新选取同步时间！");
                 }
             })
         }else{
