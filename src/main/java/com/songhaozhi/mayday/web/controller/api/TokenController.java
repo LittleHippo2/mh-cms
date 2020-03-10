@@ -142,7 +142,9 @@ public class TokenController extends BaseController {
                     orgList.add(org1);
                 }
 
-                orgService.deleteOrg(orgIdLIst);
+                if(orgIdLIst.size() != 0){
+                    orgService.deleteOrg(orgIdLIst);
+                }
                 if(orgList.size() != 0){
                     //同步gxzcc——org表
                     orgService.insertOrgData(orgList);
@@ -210,10 +212,13 @@ public class TokenController extends BaseController {
                 }
 
                 //删除重复的数据
-                personService.deleteGxzccUser(userIdList);
-                personService.deleteUser(userIdList);
-                personService.deleteRelation(relationIdList);
-
+                if(userIdList.size() != 0){
+                    personService.deleteGxzccUser(userIdList);
+                    personService.deleteUser(userIdList);
+                }
+                if (relationIdList.size() != 0){
+                    personService.deleteRelation(relationIdList);
+                }
 
                 if(userList.size() != 0){
                     //同步mayday_user 表
