@@ -124,9 +124,11 @@ public class TokenController extends BaseController {
                 result.put("orgMessage", "没有可以同步的组织机构信息");
             }else{
                 orgList = new ArrayList<>();
+                List<String> orgIdLIst = new ArrayList<>();
                 for(int i= 0; i<org.size(); i++){
                     Org org1 = new Org();
                     org1.setOrganId(((JSONObject)org.get(i)).getString("organId"));
+                    orgIdLIst.add(((JSONObject)org.get(i)).getString("organId"));
                     org1.setPath(((JSONObject)org.get(i)).getString("p"));
                     org1.setOrganName(((JSONObject)org.get(i)).getString("organName"));
                     org1.setOrgUuid(((JSONObject)org.get(i)).getString("orguuid"));
@@ -139,6 +141,8 @@ public class TokenController extends BaseController {
                     org1.setTimesTamp(((JSONObject)org.get(i)).getString("timestamp"));
                     orgList.add(org1);
                 }
+
+                orgService.deleteOrg(orgIdLIst);
                 if(orgList.size() != 0){
                     //同步gxzcc——org表
                     orgService.insertOrgData(orgList);
@@ -152,9 +156,12 @@ public class TokenController extends BaseController {
                 userList = new ArrayList<>();
                 relationList = new ArrayList<>();
                 jsonUserList = new ArrayList<>();
+                List<String> userIdList = new ArrayList<>();
+                List<String> relationIdList = new ArrayList<>();
                 for(int i = 0; i<user.size(); i++){
                     JsonUser jsonUser = new JsonUser();
                     jsonUser.setUserid(((JSONObject) user.get(i)).getString("userid"));
+                    userIdList.add(((JSONObject) user.get(i)).getString("userid"));
                     jsonUser.setFullname(((JSONObject) user.get(i)).getString("fullname"));
                     jsonUser.setAccount(((JSONObject) user.get(i)).getString("account"));
                     jsonUser.setPassword(((JSONObject) user.get(i)).getString("password"));
@@ -198,6 +205,16 @@ public class TokenController extends BaseController {
                     userList.add(user1);
                 }
 
+                for(Relation relation : relationList){
+                    relationIdList.add(relation.getId());
+                }
+
+                //删除重复的数据
+                personService.deleteGxzccUser(userIdList);
+                personService.deleteUser(userIdList);
+                personService.deleteRelation(relationIdList);
+
+
                 if(userList.size() != 0){
                     //同步mayday_user 表
                     personService.insertUser(userList);
@@ -210,10 +227,7 @@ public class TokenController extends BaseController {
                     //同步gxzcc_user 表
                     personService.insertGxzccUserData(jsonUserList);
                 }
-
             }
-
-
         }catch (DuplicateKeyException e ){
             result.put("error","数据插入数据库时，存在和数据库相同的数据，请输入准确的时间和部门id，确保数据不重复");
             log.error("数据插入数据库时，存在和数据库相同的数据，请输入准确的时间和部门id，确保数据不重复");

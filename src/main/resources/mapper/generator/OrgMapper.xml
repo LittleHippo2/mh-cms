@@ -48,7 +48,15 @@
       #{org.timesTamp})
     </foreach>
   </insert>
+
   <select id="getAllDepartsFatherId" resultType="java.lang.String">
   select distinct(fatherId) from GXZCC_SYS_ORGAN
   </select>
+
+  <delete id="deleteOrgData" parameterType="java.lang.String">
+    delete from GXZCC_SYS_ORGAN where ORGANID IN
+    <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

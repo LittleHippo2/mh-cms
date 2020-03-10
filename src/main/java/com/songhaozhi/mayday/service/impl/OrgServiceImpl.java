@@ -41,6 +41,7 @@ public class OrgServiceImpl implements OrgService {
     }
 
     @Override
+
     public String getOrgJsonTree() {
 
         JSONArray jsonA = new JSONArray();
@@ -101,5 +102,11 @@ public class OrgServiceImpl implements OrgService {
         }
         return jsonA.toString();
     }
+
+    public Integer deleteOrg(List<String> list) {
+        return orgMapper.deleteOrgData(list);
+    }
+
+
 
 }

@@ -18,4 +18,10 @@ public interface PersonService {
     Integer insertRelationData(List<Relation> list);
 
     Integer insertGxzccUserData(List<JsonUser> list);
+
+    Integer deleteRelation(List<String> list);
+
+    Integer deleteUser(List<String> list);
+
+    Integer deleteGxzccUser(List<String> list);
 }

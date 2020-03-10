@@ -46,5 +46,20 @@ public class PersonServiceImpl implements PersonService {
         return personMapper.insertGxzccUser(list);
     }
 
+    @Override
+    public Integer deleteRelation(List<String> list) {
+        return personMapper.deleteRelation(list);
+    }
+
+    @Override
+    public Integer deleteUser(List<String> list) {
+        return personMapper.deleteUser(list);
+    }
+
+    @Override
+    public Integer deleteGxzccUser(List<String> list) {
+        return personMapper.deleteGxzccUser(list);
+    }
+
 
 }

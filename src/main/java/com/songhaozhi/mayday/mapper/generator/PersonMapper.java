@@ -25,5 +25,9 @@ public interface PersonMapper {
    //插入gxzcc_user表
    Integer insertGxzccUser(@Param(value="list")List<JsonUser> list);
 
+   Integer deleteGxzccUser(@Param("list")List<String> list);
 
+   Integer deleteUser(@Param("list")List<String> list);
+
+   Integer deleteRelation(@Param("list")List<String> list);
 }

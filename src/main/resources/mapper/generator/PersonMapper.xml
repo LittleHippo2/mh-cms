@@ -60,4 +60,25 @@
       #{user.failedLoginCount},#{user.editPwdTime},#{user.mobile},#{user.timestamp},#{user.type})
     </foreach>
   </insert>
+
+  <delete id="deleteGxzccUser" parameterType="java.lang.String">
+    delete from gxzcc_sys_user where USERID IN
+    <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <delete id="deleteUser" parameterType="java.lang.String">
+    delete from mayday_user where user_id IN
+    <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
+
+  <delete id="deleteRelation" parameterType="java.lang.String">
+    delete from GXZCC_SYS_ORGAN_USER_RELATION where ID IN
+    <foreach collection="list" item="id" index="index" open="(" separator="," close=")">
+      #{id}
+    </foreach>
+  </delete>
 </mapper>

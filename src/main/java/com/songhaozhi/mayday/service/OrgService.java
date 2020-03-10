@@ -15,5 +15,10 @@ public interface OrgService {
 
     Integer insertOrgData(List<Org> list);
 
+
     String getOrgJsonTree();
+
+    Integer deleteOrg(List<String> list);
+
+
 }
