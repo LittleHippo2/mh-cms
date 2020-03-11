@@ -5,19 +5,6 @@
     <meta charset="UTF-8">
     <title>机构管理</title>
 
-    <link th:href="@{/source/pinghsu/source/style.min.css}" rel="stylesheet"/>
-    <link rel="stylesheet" href="/css/gitalk.css">
-    <link rel="stylesheet" type="text/css" href="/plugins/vali/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/plugins/toast/jquery.toast.css">
-    <link rel="shortcut icon" th:href="@{/static/img/favicon.ico}" />
-    <!--<link rel="stylesheet" type="text/css"
-          th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">-->
-    <link rel="stylesheet" type="text/css"
-          th:href="@{/plugins/vali/css/main.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/plugins/toast/jquery.toast.css}">
-    <link rel="stylesheet" type="text/css"
-          th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}">
     <link rel="stylesheet" href="/plugins/bootstrap-treeview/css/bootstrap.css">
     <!--<link rel="stylesheet" type="text/css" href="/plugins/flatpickr/css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/plugins/flatpickr/css/htmleaf-demo.css">-->
@@ -55,30 +42,30 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-7">
+                    <div id="tabdiv" class="col-lg-7">
                         <h4 class="tile-title">机构详情</h4>
                         <div class="table-responsive">
                             <label for="meeting">开始时间：</label>
-                            <input id="meeting" placeholder="请选择开始时间">
+                            <input id="meeting" placeholder="请选择开始时间">&nbsp;&nbsp;&nbsp;&nbsp;
                             <button value="开始同步" class="btn btn-sm btn-outline-primary" onclick="Synchronization()">同步</button>
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>序号</th>
-                                        <th>机构简拼</th>
-                                        <th>机构名称</th>
+                                        <th width="20%">序号</th>
+                                        <th width="30%">机构简拼</th>
+                                        <th width="50%">机构名称</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td th:text="1"></td>
-                                        <td th:text="啊啊啊啊啊啊啊啊啊啊啊啊"></td>
-                                        <td th:text="测试"></td>
+                                <tbody id="tdata">
 
-                                    </tr>
                                 </tbody>
                             </table>
+                           <!-- <div class="container"  style="float: right;">
+                                <ul class="pagination">
+                                </ul>
+                            </div>-->
                         </div>
+
                     </div>
                 </div>
 
@@ -102,7 +89,7 @@
 
     $(function(){
         $("#meeting").flatpickr();
-        $('#tree').on('nodeSelected',function(event, data) {
+        /*$('#tree').on('nodeSelected',function(event, data) {
 
             if(data.state.expanded){
                 // 处于展开状态则折叠
@@ -111,9 +98,9 @@
                 // 展开
                 $('#tree').treeview('expandNode', data.nodeId);
             }
-        });
+        });*/
         getOrgJsonTree();
-        getOrgList();
+        /*getOrgList();*/
 
         $.ajax({
             url:"/getToken",
@@ -123,7 +110,7 @@
             }
         })
 
-        $("#orglist").change(function(){
+        /*$("#orglist").change(function(){
             var value = this.value;
             $(".baby").empty();
             $.ajax({
@@ -142,11 +129,11 @@
                     }
                 }
             })
-        })
+        })*/
 
     })
 
-    function switchPage(id){
+    /*function switchPage(id){
         var obj = $("#orglist option:selected").val();
         console.log(obj);
         $.ajax({
@@ -161,9 +148,9 @@
                 }
             }
         })
-    }
+    }*/
 
-    function getOrgList(){
+    /*function getOrgList(){
         $.ajax({
             url:"/admin/org/getOrgList",
             type:"get",
@@ -174,7 +161,7 @@
                 }
             }
         })
-    }
+    }*/
     function getOrgJsonTree(){
         $.ajax({
             url:"/admin/org/getOrgJsonTree",
@@ -190,39 +177,10 @@
         })
     }
 
-
+/*
     function getOrgMessage(){
 
-    }
-
-    //显示询问框
-    function showModel(id) {
-        $("#articleId").val(id);
-        $("#removeModal").modal();
-    }
-    //删除
-    function remove(){
-        window.location.href = "/admin/page/remove?id="
-            + $("#articleId").val();
-    }
-
-    //修改文章为发布状态
-    function restore(id){
-        $.ajax({
-            url:"/admin/article/restore",
-            type:"post",
-            data:{id:id},
-            dataType:"json",
-            success:function(data){
-                if(data.flag==true){
-                    window.location.reload();
-                }else{
-                    showMsg(data.msg,"error","3000");
-                }
-            }
-        });
-    }
-
+    }*/
 
     function Synchronization() {
         var time = $("#meeting").val();
@@ -256,12 +214,14 @@
 
     }
     function itemOnclick(target){
+        //清除数据
+        $("#tdata").empty();
         //找到当前节点id
         var nodeid = $(target).attr('data-nodeid');
         var tree = $('#tree');
         //获取当前节点对象
         var node = tree.treeview('getNode', nodeid);
-
+        //alert(node.organId);
         if(node.state.expanded){
             //处于展开状态则折叠
             tree.treeview('collapseNode', node.nodeId);
@@ -269,8 +229,19 @@
             //展开
             tree.treeview('expandNode', node.nodeId);
         }
+        $.ajax({
+            url:"/admin/org/getOrgList?fatherId="+node.organId,
+            type:"get",
+            success:function (data) {
+                for(var i = 0; i<data.data.length; i++){
+
+                    $("#tdata").append("<tr><td>"+(i+1)+"</td><td>"+data.data[i].code+"</td><td>"+data.data[i].organName+"</td></tr>");
+
+                }
+
+            }
+        })
+
     }
-
-
 
 </script>
