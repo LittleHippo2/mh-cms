@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,15 +31,19 @@ public class MessageController extends BaseController {
     public JSONObject sendOnce(String access_token, String userid, String content){
         JSONObject result = new JSONObject();
         Map inParam = new HashMap<String,Object>();
-        inParam.put("userid",userid);
+        //inParam.put("userid",userid);
         inParam.put("access_token",access_token);
         JSONObject jsonObject ;
         try{
-            jsonObject = JSONObject.parseObject(content);
-            inParam.put("content",jsonObject);
+            //jsonObject = JSONObject.parseObject(content);
+            System.out.println(content);
+            inParam.put("content",content);
             String url = PersonUrl;
             url = url+userid;
-            String request = HttpUtil.post(url,inParam,3000,3000);
+           // url = URLEncoder.encode(url,"utf-8");
+            System.out.println(url);
+           // String request = HttpUtil.post(url,inParam,3000,3000);
+            String request = HttpUtil.postMsg(url,inParam,3000,3000);
             log.info("result:"+request);
             result = JSONObject.parseObject(request);
         }catch (Exception e){

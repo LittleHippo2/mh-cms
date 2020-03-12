@@ -2,12 +2,16 @@ package com.songhaozhi.mayday.util;
 
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.*;
+import java.net.*;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -127,6 +131,9 @@ public class HttpUtil {
                     params = str.substring(0, str.length() - 1);
                 }
             }
+
+            params = new String(params.getBytes("utf-8"));
+            System.out.println(params);
             URL url = new URL(urlAddr);
             conn = (HttpURLConnection) url.openConnection();
             // 设置读取超时时间
@@ -143,13 +150,13 @@ public class HttpUtil {
             conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             if (!params.isEmpty()) {
                 // 此处getOutputStream会隐含的进行connect()
-                outputStreamWriter = new OutputStreamWriter(conn.getOutputStream(), "utf-8");
+                outputStreamWriter = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
                 // 写入
                 outputStreamWriter.write(params);
                 // 刷新该流的缓冲
                 outputStreamWriter.flush();
             }
-            inputStreamReader = new InputStreamReader(conn.getInputStream(), "utf-8");
+            inputStreamReader = new InputStreamReader(conn.getInputStream(), "UTF-8");
             bufferedReader = new BufferedReader(inputStreamReader);
             while ((line = bufferedReader.readLine()) != null) {
                 result.append(line);
@@ -232,13 +239,13 @@ public class HttpUtil {
             conn.setRequestMethod("POST");
             if (paramsStr != null && !paramsStr.isEmpty()) {
                 // 此处getOutputStream会隐含的进行connect()
-                outputStreamWriter = new OutputStreamWriter(conn.getOutputStream(), "utf-8");
+                outputStreamWriter = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
                 // 写入
                 outputStreamWriter.write(paramsStr);
                 // 刷新该流的缓冲
                 outputStreamWriter.flush();
             }
-            inputStreamReader = new InputStreamReader(conn.getInputStream(), "utf-8");
+            inputStreamReader = new InputStreamReader(conn.getInputStream(), "UTF-8");
             bufferedReader = new BufferedReader(inputStreamReader);
             while ((line = bufferedReader.readLine()) != null) {
                 result.append(line);
@@ -274,5 +281,46 @@ public class HttpUtil {
         return result.toString();
     }
 
+    public static void main(String[] args) throws MalformedURLException {
+        String urlAddr = "http://172.16.5.200:10005/api/msg/message/user/a6c7a79f-543b-4043-9426-43d3cc8b340c";
+        //String line;
+        //String params = "content={\"appid\":\"legacycpk.csse.cms\",\"display\":{\"notification\":true,\"system\":true,\"msgbox\":true},\"type\":\"application\",\"title\":\"title\",\"content\":\"中文\"}";
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.valueOf("application/x-www-form-urlencoded;charset=UTF-8"));
+
+        //HttpEntity<String> request1 = new HttpEntity<>(params);
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
+        map.add("access_token","b428218f-dd57-43db-9442-1ccf822b7cf9");
+        map.add("content", "{\"appid\":\"legacycpk.csse.cms\",\"display\":{\"notification\":true,\"system\":true,\"msgbox\":true},\"type\":\"application\",\"title\":\"title\",\"content\":\"中文\"}");
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+        ResponseEntity<String> response = restTemplate.postForEntity( urlAddr, request , String.class );
+        System.out.println(response.getBody());
+
+
+    }
+    public static String postMsg(String urlAddr, Map<String, Object> paramsMap, int connectTimeout, int readTimeout) throws Exception {
+        long begin = System.currentTimeMillis();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.valueOf("application/x-www-form-urlencoded;charset=UTF-8"));
+
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
+        map.add("access_token", (String) paramsMap.get("access_token"));
+        map.add("content", (String) paramsMap.get("content"));
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+        ResponseEntity<String> response = restTemplate.postForEntity( urlAddr, request , String.class );
+        System.out.println(response.getBody());
+
+        return response.getBody();
+    }
 
 }
