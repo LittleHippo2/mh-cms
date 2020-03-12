@@ -251,9 +251,22 @@
  		}else{
             showMsg("请输入文章内容！","error","3000");
         }
+		updateTodo();
  	}
     $('#categorySelect').select2();
 	$('#tagSelect').select2();
+   function updateTodo() {
+	   console.log(11214124)
+	   $.ajax({
+		   url : "/backlog/count",
+		   type : "post",
+		   dataType : "html",
+		   success : function(data) {
+			   console.log(data)
+			   window.__set_todo_count__(data);
+		   }
+	   });
+   }
    </script>
 </body>
 </html>
