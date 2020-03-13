@@ -6,7 +6,7 @@
     <result column="category_id" jdbcType="BIGINT" property="categoryId" />
   </resultMap>
   <select id="getPersonList" resultType="com.songhaozhi.mayday.model.dto.Person">
-    select su.fullname, su.sex, sr.ORGAN_ID from GXZCC_SYS_USER su
+    select su.account,su.fullname, su.sex,su.mobile, sr.ORGAN_ID from GXZCC_SYS_USER su
     join GXZCC_SYS_ORGAN_USER_RELATION sr on su.userid = sr.user_id
     where 1=1
   <if test="orgId != null and orgId != '' ">

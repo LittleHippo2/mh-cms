@@ -281,7 +281,7 @@ public class HttpUtil {
         return result.toString();
     }
 
-    public static void main(String[] args) throws MalformedURLException {
+    /*public static void main(String[] args) throws MalformedURLException {
         String urlAddr = "http://172.16.5.200:10005/api/msg/message/user/a6c7a79f-543b-4043-9426-43d3cc8b340c";
         //String line;
         //String params = "content={\"appid\":\"legacycpk.csse.cms\",\"display\":{\"notification\":true,\"system\":true,\"msgbox\":true},\"type\":\"application\",\"title\":\"title\",\"content\":\"中文\"}";
@@ -302,7 +302,7 @@ public class HttpUtil {
         System.out.println(response.getBody());
 
 
-    }
+    }*/
     public static String postMsg(String urlAddr, Map<String, Object> paramsMap, int connectTimeout, int readTimeout) throws Exception {
         long begin = System.currentTimeMillis();
 

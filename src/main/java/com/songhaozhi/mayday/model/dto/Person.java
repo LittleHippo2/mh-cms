@@ -10,6 +10,8 @@ public class Person implements Serializable {
 
     public String orginId;
 
+    public String account;
+    public String mobile;
     public String getFullName() {
         return fullName;
     }
@@ -32,5 +34,21 @@ public class Person implements Serializable {
 
     public void setOrginId(String orginId) {
         this.orginId = orginId;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
